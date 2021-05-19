@@ -76,7 +76,7 @@ logo2_width = "75px"
 # Meta data
 description = "ArtemisCloud.io is a collection of container images that provide a way to deploy the Apache ActiveMQ Artemis Broker on Kubernetes."
 author = "Themefisher"
-image = "favicon.png"
+image = "https://artemiscloud.io/favicon.png"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 
