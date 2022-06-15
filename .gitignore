@@ -1,5 +1,5 @@
+node_modules
 public
-**.iml
-resources/_gen/*
-build
-.idea
+resources
+.netlify
+.hugo_build.lock

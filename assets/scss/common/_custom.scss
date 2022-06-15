@@ -1,0 +1,19 @@
+/** Custom styles */
+.home div[role="document"] {
+    margin-top: 15px;
+}
+
+:not([data-dark-mode]) .home div[role="document"] {
+    background: linear-gradient(to right bottom, $blue-900 0%, $blue-300 100%);
+    color: $white;
+}
+
+.card {
+    background-color: $cyan-100;
+
+    .card-title-icon {
+        color: $cyan-300;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,88 @@
+# Meta Data for SEO
+
+## Homepage
+title = "ArtemisCloud.io"
+titleSeparator = "-"
+titleAddition = "ActiveMQ Artemis on Kubernetes"
+description = "ArtemisCloud.io is a collection of container images that provide a way to deploy the Apache ActiveMQ Artemis Broker on Kubernetes."
+
+## Documentation
+# docsVersion = "0.3"
+
+## Open Graph
+images = ["artemiscloud.png"]
+ogLocale = "en_US"
+titleHome = "ArtemisCloud.io"
+
+## Twitter Cards
+twitterSite = "@artemiscloudio"
+twitterCreator = "@henkverlinde"
+
+## JSON-LD
+# schemaType = "Person"
+schemaType = "Organization"
+schemaName = "ArtemisCloud.io"
+schemaLocale = "en-US"
+schemaLogo = "artemiscloud.png"
+schemaLogoWidth = 512
+schemaLogoHeight = 512
+schemaImage = "artemiscloud.png"
+schemaImageWidth = 1280
+schemaImageHeight = 640
+schemaTwitter = "https://twitter.com/artemiscloudio"
+schemaLinkedIn = ""
+schemaGitHub = "https://github.com/artemiscloud"
+schemaSection = "blog"
+
+## Sitelinks Search Box
+siteLinksSearchBox = false
+
+## Chrome Browser
+themeColor = "#fff"
+
+# Images
+quality = 85
+bgColor = "#fff"
+landscapePhotoWidths = [900, 800, 700, 600, 500]
+portraitPhotoWidths = [800, 700, 600, 500]
+lqipWidth = "20x"
+smallLimit = "300"
+
+# Footer
+footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>, and <a class=\"text-muted\" href=\"https://getdoks.org/\">Doks</a>"
+
+# Feed
+copyRight = "Copyright (c) 2020-2021 Henk Verlinde"
+
+# Alert
+alert = false
+alertDismissable = true
+alertText = "Introducing the ArtemisCloud.io! <a class=\"alert-link stretched-link\" href=\"https://artemiscloud.io/\">Check out ArtemisCloud.io</a>"
+
+# Edit Page
+# repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
+repoHost = "GitHub"
+docsRepo = "https://github.com/artemiscloud/artemiscloud.github.io"
+docsRepoBranch = "master"
+docsRepoSubPath = ""
+editPage = false
+lastMod = false
+
+[options]
+  lazySizes = true
+  clipBoard = true
+  instantPage = true
+  flexSearch = true
+  darkMode = true
+  bootStrapJs = true
+  breadCrumb = false
+  highLight = true
+  kaTex = false
+  multilingualMode = false
+  docsVersioning = false
+  fullWidth = true
+
+[menu]
+  [menu.section]
+    auto = true
+    collapsibleSidebar = true

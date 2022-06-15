@@ -1,48 +1,51 @@
-## Writing A Blog
+# ArtemisCloud.io website
 
-Under /content/blog create a new markdownfile of any name, lets say myBlog.md
+## Requirements
 
-Add the following as a starting point
+- [Git](https://git-scm.com/) — latest source release
+- [Node.js](https://nodejs.org/) — latest LTS version or newer
 
-```
-    ---  
-    title: "My Blog Title"  
-    type: "featured"
-    description: "My Blog Description"
-    draft: false
-    ---
-```
----
+<details>
+<summary>Why Node.js?</summary>
 
-The type should be featured or regular, featured posts will always appear on the blog landing page.
+ArtemisCloud.io website uses Doks starter theme that uses npm (included with Node.js) to centralize dependency management, making it [easy to update](https://getdoks.org/docs/help/how-to-update/) resources, build tooling, plugins, and build scripts.
 
-**NOTE**
-Setting draft to false means you can push it to the website view it but it won't appear on the blog landing page, you could access this via //blog/myBlog
+</details>
 
----
+## Get started
 
-You can also add an image by adding the image under static/images and adding.
+Start developing in three steps:
 
-```
-    image: "images/logo.png"
+### 1. Clone this repository
+
+```bash
+git clone https://github.com/artemiscloud/artemiscloud.github.io.git artemiscloud.github.io.git && cd artemiscloud.github.io.git
 ```
 
-You can then write your blog using markdown, this will be converted at compile time to html.
+### 2. Install dependencies
 
----
-**NOTE**
-The first paragraph is what is shown on the Blog landing page so make it short and succinct
----
-
-You can add a youtube video by adding the following
-```
-    {{< youtube C0DPdy98e4c >}}
+```bash
+npm install
 ```
 
-### Website Color scheme
+### 3. Start development server
 
-The following are the 3 main colours used in the website, use these when updating any css etc
+```bash
+npm run start
+```
 
-00f7f7
-00a4a7
-00022b
+## Other commands
+
+Doks comes with [commands](https://getdoks.org/docs/prologue/commands/) for common tasks.
+
+## Documentation
+
+- [Netlify](https://docs.netlify.com/)
+- [Hugo](https://gohugo.io/documentation/)
+- [Doks](https://getdoks.org/)
+
+## Communities
+
+- [Netlify Community](https://community.netlify.com/)
+- [Hugo Forums](https://discourse.gohugo.io/)
+- [Doks Discussions](https://github.com/h-enk/doks/discussions)
