@@ -1,12 +1,15 @@
 ---
 title: "Scaling Up and Down Brokers with ArtemisCloud Operator"  
 description: "How to use operator to scale up and down broker pods"
-lead: "Deploying the Basic Broker Image"
-date: 2021-02-04
-lastmod: 2021-02-18
 draft: false
-contributors: []
+images: []
+menu:
+  docs:
+    parent: "tutorials"
+weight: 110
+toc: true
 ---
+
 With ArtemisCloud operator one can easily manage the broker clusters.
 Either scaling up number of nodes(pods) when workload is high, or scaling down when some is not needed -- without messages being lost or stuck.
 
@@ -21,7 +24,7 @@ $ git clone https://github.com/artemiscloud/activemq-artemis-operator.git
 $ cd activemq-artemis-operator
 ```
 
-If you are not sure how to deploy the operator take a look at [this blog]({{< relref "/blog/using_operator.md" >}}).
+If you are not sure how to deploy the operator take a look at [this tutorial]({{< relref "using_operator.md" >}}).
 
 In this blog post we assume you deployed the operator to a namespace called **myproject**.
 

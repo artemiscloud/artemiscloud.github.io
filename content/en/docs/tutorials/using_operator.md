@@ -1,13 +1,15 @@
 ---
-title: "Getting Started with the ArtemisCloud Operator"  
+title: "Using the ArtemisCloud Operator"  
 description: "Steps to get operator up and running and basic broker operations"
-lead: "Deploying the Basic Broker Image"
-date: 2021-02-03
-lastmod: 2021-02-18
 draft: false
-weight: 3
-contributors: []
+images: []
+menu:
+  docs:
+    parent: "tutorials"
+weight: 110
+toc: true
 ---
+
 The [ArtemisCloud](https://github.com/artemiscloud) Operator is a powerful tool that allows you to configure and
 manage ActiveMQ Artemis broker resources in a cloud environment. You can get the Operator running in just a few steps.
 

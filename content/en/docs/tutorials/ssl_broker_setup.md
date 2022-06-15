@@ -1,12 +1,15 @@
 ---
 title: "Setting up SSL connections with ArtemisCloud Operator"  
 description: "An example for setting up ssl connections for broker in kubernetes with operator"
-lead: "Deploying the Basic Broker Image"
-date: 2021-02-03
-lastmod: 2021-02-08
 draft: false
-contributors: []
+images: []
+menu:
+  docs:
+    parent: "tutorials"
+weight: 110
+toc: true
 ---
+
 Security is always a concern in a production environment. With ArtemisCloud Operator
 You can easily configure and set up a broker with ssl-enabled acceptors. The blog explains how to do it.
 
@@ -19,7 +22,7 @@ Before you start you need have access to a running Kubernetes cluster environmen
 
 ### Deploy ArtemisCloud operator
 First you need to deploy the ArtemisCloud operator.
-If you are not sure how to deploy the operator take a look at [this blog]({{< relref "/blog/using_operator.md" >}}).
+If you are not sure how to deploy the operator take a look at [this blog]({{< relref "using_operator.md" >}}).
 
 In this blog post we assume you deployed the operator to a namespace called **myproject**.
 

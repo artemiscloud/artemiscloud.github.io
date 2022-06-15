@@ -1,11 +1,13 @@
 ---
 title: "Using the custom init image"  
 description: "Introduction to the operator custom init image"
-lead: "Deploying the Basic Broker Image"
-date: 2021-02-02
-lastmod: 2021-02-05
 draft: false
-contributors: []
+images: []
+menu:
+  docs:
+    parent: "tutorials"
+weight: 110
+toc: true
 ---
 
 Starting from [v0.18.1](https://github.com/artemiscloud/activemq-artemis-operator/tree/v0.18.1), the ArtemisCloud Operator
