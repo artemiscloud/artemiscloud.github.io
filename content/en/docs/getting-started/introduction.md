@@ -19,6 +19,10 @@ Welcome to The ArtemisCloud documentation. This documentation is open source and
 
 One page summary of how to start a new ArtemisCloud project. [Quick Start →]({{< relref "quick-start" >}})
 
+## Example YAML
+
+See the [operator repo](https://github.com/artemiscloud/activemq-artemis-operator/tree/main/examples) for example YAML files to create various deployments.
+
 ## How to contribute to the docs
 
 You can contribute to these docs by sending a Pull Request to the [activemq-artemis-operator](https://github.com/artemiscloud/activemq-artemis-operator) Github repository.
