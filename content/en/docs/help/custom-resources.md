@@ -21,8 +21,7 @@ The following sub-sections detail the configuration items that you can set in Cu
 broker and addressing CRDs.
 
 ### Broker Custom Resource configuration reference
-A CR instance based on the main broker CRD enables you to configure brokers for deployment in a Kubernetes project. The 
-following is the full CRD yaml file
+A CR instance based on the main broker CRD enables you to configure brokers for deployment in a Kubernetes project, see the [artemiscloud/activemq-artemis-operator CRDs](https://doc.crds.dev/github.com/artemiscloud/activemq-artemis-operator). The following is the full CRD yaml file
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
