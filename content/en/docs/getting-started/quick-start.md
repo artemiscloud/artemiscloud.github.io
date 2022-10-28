@@ -37,21 +37,27 @@ namespace.
 
 ## Deploying the operator
 
-To deploy the operator simply run
-
-```$xslt
-$ make deploy
+Create the namespace activemq-artemis-operator and save it for all subsequent kubectl commands
+```shell
+kubectl create namespace activemq-artemis-operator
+kubectl config set-context --current --namespace activemq-artemis-operator
 ```
-or if you have built your own image, overrides the defaults
 
-```$xslt
-make OPERATOR_IMAGE_REPO=<your registry url> OPERATOR_VERSION=<your tag> deploy
+To deploy the operator in the current namespace activemq-artemis-operator simply run
+
+```shell
+./deploy/install_opr.sh
 ```
-The defaults are specified in [Makefile](../Makefile).
+or if you have built your own image, change the image defined in deploy/operator.yaml before deploy the operator.
 
-The operator will be deployed into namespace **activemq-artemis-operator** and watches the same namespace.
+The operator will be deployed into the current namespace and watches the same namespace.
 
-To watch all namespace, change the **WATCH_NAMESPACE** environment variable defined in config/manager/manager.yaml to be empty string before deploy the operator.
+To watch all namespace, change the **WATCH_NAMESPACE** environment variable defined in deploy/operator.yaml to be empty string before deploy the operator.
+
+```shell
+cd deploy
+./deploy/cluster_wide_install_opr.sh
+```
 
 At this point you should see the activemq-artemis-operator starting up and if you check the
 logs you should see something like

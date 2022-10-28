@@ -20,10 +20,8 @@ By deploying a corresponding Custom Resource (CR) instance, you specify values f
 The following sub-sections detail the configuration items that you can set in Custom Resource instances based on the main 
 broker and addressing CRDs.
 
-See the [docs.crds.dev](https://doc.crds.dev/github.com/artemiscloud/activemq-artemis-operator) for an alternative view of current and previous versions of the CRDs. This website also allows you view combined [raw CRD](https://doc.crds.dev/raw/github.com/artemiscloud/activemq-artemis-operator) information, which you can diff with [an old version](https://doc.crds.dev/raw/github.com/artemiscloud/activemq-artemis-operator@v1.0.4) to track changes to the operator. 
-
 ### Broker Custom Resource configuration reference
-A CR instance based on the main broker CRD enables you to configure brokers for deployment in a Kubernetes project. The following is the full CRD yaml file
+A CR instance based on the main broker CRD enables you to configure brokers for deployment in a Kubernetes project, see the [artemiscloud/activemq-artemis-operator CRDs](https://doc.crds.dev/github.com/artemiscloud/activemq-artemis-operator). The following is the full CRD yaml file
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -31,7 +29,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.7.0
-  creationTimestamp: null
   name: activemqartemises.broker.amq.io
 spec:
   group: broker.amq.io
@@ -638,7 +635,7 @@ spec:
                         type: string
                     type: object
                 type: object
-              upgrades:
+              upgrades: This is deprecated in v1beta1, specifying the Version is sufficient.
                 description: ActiveMQArtemis App product upgrade flags
                 properties:
                   enabled:
@@ -707,7 +704,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.7.0
-  creationTimestamp: null
   name: activemqartemisaddresses.broker.amq.io
 spec:
   group: broker.amq.io
@@ -888,7 +884,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.7.0
-  creationTimestamp: null
   name: activemqartemissecurities.broker.amq.io
 spec:
   group: broker.amq.io
@@ -1249,7 +1244,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.7.0
-  creationTimestamp: null
   name: activemqartemisscaledowns.broker.amq.io
 spec:
   group: broker.amq.io

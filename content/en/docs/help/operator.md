@@ -665,3 +665,28 @@ spec:
 ```
 
 labels Node Selectors are outside the scope of this document, for full documentation see the [Kubernetes Documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+
+
+### Setting  Environment Variables
+
+As an advanced option, you can set environment variables for containers using a CR.
+For example, to have the JDK output what it sees as 'the system', provide a relevant JDK_JAVA_OPTIONS key in the env attribute.
+
+```yaml
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: broker
+  namespace: activemq-artemis-operator
+spec:
+spec:
+  deploymentPlan:
+    size: 1
+    image: placeholder
+  env:
+    - name: JDK_JAVA_OPTIONS
+      value: -XshowSettings:system
+
+```
+
+Note: you are configuring an array of [envVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#envvar-v1-core) which is a very powerfull concept. Proceed with care, taking due respect to any environment the operator may set and depend on. For full documentation see the [Kubernetes Documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
