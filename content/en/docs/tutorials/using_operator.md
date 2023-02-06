@@ -80,7 +80,7 @@ By default the operator watches the namespace where it is deployed (i.e. **mypro
 ### Step 3 - Deploying ActiveMQ Artemis Broker in the cloud
 Now, with a running Operator, it's time to deploy the broker via a Custom Resource (CR) instance:
 ```shell script
-kubectl create -f deploy/examples/artemis-basic-deployment.yaml -n myproject
+kubectl create -f examples/artemis-basic-deployment.yaml -n myproject
 ```
 Watch the broker Pod start up:
 ```shell script
@@ -159,7 +159,7 @@ GMS: address=ex-aao-ss-0-6103, cluster=activemq_broadcast_channel, physical addr
 ### Step 4 - Create a queue using the Operator
 Now, let's create a message queue in the broker:
 ```shell script
-$ kubectl create -f deploy/examples/address-queue-create-auto-removed.yaml -n myproject
+$ kubectl create -f examples/address-queue-create-auto-removed.yaml -n myproject
 activemqartemisaddress.broker.amq.io/ex-aaoaddress created
 ```
 The _address-queue-create-auto-removed.yaml_ is another CR supported by the ArtemisCloud Operator. Its content is shown below:
