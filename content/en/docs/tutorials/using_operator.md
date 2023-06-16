@@ -36,23 +36,12 @@ $ kubectl create namespace myproject
 namespace/myproject created
 ```
 
-Go to the root of the local repo and set up the service account and permissions needed for Operator deployment:
+Go to the root of the local repo and install the operator:
 
 ```shell script      
       $ cd activemq-artemis-operator
-      $ kubectl create -f deploy/service_account.yaml --namespace myproject
-      $ kubectl create -f deploy/role.yaml --namespace myproject
-      $ kubectl create -f deploy/role_binding.yaml --namespace myproject
+      $ ./deploy/install_opr.sh
 ```
-Deploy all the Custom Resource Definitions (CRDs) that the Operator supports:
-```shell script   
-      # Broker CRD
-      $ kubectl create -f deploy/crds/broker_activemqartemis_crd.yaml
-      # Address CRD
-      $ kubectl create -f deploy/crds/broker_activemqartemisaddress_crd.yaml
-      # Scaledown CRD
-      $ kubectl create -f deploy/crds/broker_activemqartemisscaledown_crd.yaml
-```      
 
 > **_NOTE:_**    You might see some warning messages while deploying the CRDs. For example:
     _"Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use
@@ -87,14 +76,14 @@ Watch the broker Pod start up:
 $ kubectl get pod -n myproject
 NAME                                         READY   STATUS    RESTARTS   AGE
 activemq-artemis-operator-58bb658f4c-gthwb   1/1     Running   0          14m
-ex-aao-ss-0                                  1/1     Running   0          61s
+artemis-broker-ss-0                          1/1     Running   0          61s
 
 ```
 Behind the scenes, the Operator watches CR deployments in the target namespace. When the broker CR is deployed, the Operator configures and deploys the broker Pod into the cluster.
 
 To see details for startup of the broker Pod you can get the console log from the Pod:
 ```shell script
-$ kubectl logs ex-aao-ss-0 -n myproject
+$ kubectl logs artemis-broker-ss-0 -n myproject
 -XX:+UseParallelOldGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:MaxMetaspaceSize=100m -XX:+ExitOnOutOfMemoryError
 Removing provided -XX:+UseParallelOldGC in favour of artemis.profile provided option
 Running server env: home: /home/jboss AMQ_HOME /opt/amq CONFIG_BROKER false RUN_BROKER
@@ -122,12 +111,12 @@ OpenJDK 64-Bit Server VM warning: If the number of processors is expected to inc
 2021-02-18 06:00:07,349 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1,045,430,272
 2021-02-18 06:00:07,781 WARNING [org.jgroups.stack.Configurator] JGRP000014: BasicTCP.use_send_queues has been deprecated: will be removed in 4.0
 2021-02-18 06:00:07,814 WARNING [org.jgroups.stack.Configurator] JGRP000014: Discovery.timeout has been deprecated: GMS.join_timeout should be used instead
-2021-02-18 06:00:07,943 INFO  [org.jgroups.protocols.openshift.DNS_PING] serviceName [ex-aao-ping-svc] set; clustering enabled
+2021-02-18 06:00:07,943 INFO  [org.jgroups.protocols.openshift.DNS_PING] serviceName [artemis-broker-ping-svc] set; clustering enabled
 2021-02-18 06:00:11,047 INFO  [org.openshift.ping.common.Utils] 3 attempt(s) with a 1000ms sleep to execute [GetServicePort] failed. Last failure was [javax.naming.NameNotFoundException: DNS name not found [response code 3]]
-2021-02-18 06:00:11,048 WARNING [org.jgroups.protocols.openshift.DNS_PING] No DNS SRV record found for service [ex-aao-ping-svc]
+2021-02-18 06:00:11,048 WARNING [org.jgroups.protocols.openshift.DNS_PING] No DNS SRV record found for service [artemis-broker-ping-svc]
 
 -------------------------------------------------------------------
-GMS: address=ex-aao-ss-0-6103, cluster=activemq_broadcast_channel, physical address=172.17.0.4:7800
+GMS: address=artemis-broker-ss-0-6103, cluster=activemq_broadcast_channel, physical address=172.17.0.4:7800
 -------------------------------------------------------------------
 2021-02-18 06:00:14,217 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
 2021-02-18 06:00:14,219 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
@@ -141,7 +130,7 @@ GMS: address=ex-aao-ss-0-6103, cluster=activemq_broadcast_channel, physical addr
 2021-02-18 06:00:14,539 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue DLQ on address DLQ
 2021-02-18 06:00:14,658 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address ExpiryQueue supporting [ANYCAST]
 2021-02-18 06:00:14,660 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue ExpiryQueue on address ExpiryQueue
-2021-02-18 06:00:15,019 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started EPOLL Acceptor at ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:61616 for protocols [CORE]
+2021-02-18 06:00:15,019 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started EPOLL Acceptor at artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:61616 for protocols [CORE]
 2021-02-18 06:00:15,022 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now live
 2021-02-18 06:00:15,023 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache ActiveMQ Artemis Message Broker version 2.16.0 [amq-broker, nodeID=8d13dfd2-71ae-11eb-b7ec-0242ac110004]
 2021-02-18 06:00:15,981 INFO  [org.apache.activemq.hawtio.branding.PluginContextListener] Initialized activemq-branding plugin
@@ -152,27 +141,27 @@ GMS: address=ex-aao-ss-0-6103, cluster=activemq_broadcast_channel, physical addr
 2021-02-18 06:00:16,816 INFO  [io.hawt.web.auth.AuthenticationConfiguration] Starting hawtio authentication filter, JAAS realm: "activemq" authorized role(s): "admin" role principal classes: "org.apache.activemq.artemis.spi.core.security.jaas.RolePrincipal"
 2021-02-18 06:00:16,855 INFO  [io.hawt.web.proxy.ProxyServlet] Proxy servlet is disabled
 2021-02-18 06:00:16,866 INFO  [io.hawt.web.servlets.JolokiaConfiguredAgentServlet] Jolokia overridden property: [key=policyLocation, value=file:/home/jboss/amq-broker/etc/jolokia-access.xml]
-2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241001: HTTP Server started at http://ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:8161
-2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241002: Artemis Jolokia REST API available at http://ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:8161/console/jolokia
-2021-02-18 06:00:17,039 INFO  [org.apache.activemq.artemis] AMQ241004: Artemis Console available at http://ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:8161/console
+2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241001: HTTP Server started at http://artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:8161
+2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241002: Artemis Jolokia REST API available at http://artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:8161/console/jolokia
+2021-02-18 06:00:17,039 INFO  [org.apache.activemq.artemis] AMQ241004: Artemis Console available at http://artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:8161/console
 ```
 ### Step 4 - Create a queue using the Operator
 Now, let's create a message queue in the broker:
 ```shell script
-$ kubectl create -f examples/address-queue-create-auto-removed.yaml -n myproject
-activemqartemisaddress.broker.amq.io/ex-aaoaddress created
+$ kubectl create -f examples/address/address_queue.yaml -n myproject
+activemqartemisaddress.broker.amq.io/artemis-address-queue created
 ```
-The _address-queue-create-auto-removed.yaml_ is another CR supported by the ArtemisCloud Operator. Its content is shown below:
+The _address_queue.yaml_ is another CR supported by the ArtemisCloud Operator. Its content is shown below:
 ```yaml
-      apiVersion: broker.amq.io/v2alpha2
-      kind: ActiveMQArtemisAddress
-      metadata:
-      name: ex-aaoaddress
-      spec:
-      addressName: myAddress0
-      queueName: myQueue0
-      routingType: anycast
-      removeFromBrokerOnDelete: true
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: artemis-address-queue
+spec:
+  addressName: myAddress0
+  queueName: myQueue0
+  routingType: anycast
+  removeFromBrokerOnDelete: true
 ```
 The CR tells the Operator to create a queue named **myQueue0** on address **myAddress0** on each broker that it manages.
 
@@ -180,9 +169,9 @@ After the CR is deployed, you can observe the queue on the broker:
 
 <a name="queuestat"></a>
 ```shell script
-$ kubectl exec ex-aao-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://ex-aao-ss-0:61616
+$ kubectl exec artemis-address-queue-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://artemis-address-queue-ss-0:61616
 OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
-Connection brokerURL = tcp://ex-aao-ss-0:61616
+Connection brokerURL = tcp://artemis-address-queue-ss-0:61616
 |NAME                     |ADDRESS                  |CONSUMER_COUNT |MESSAGE_COUNT |MESSAGES_ADDED |DELIVERING_COUNT |MESSAGES_ACKED |SCHEDULED_COUNT |ROUTING_TYPE |
 |DLQ                      |DLQ                      |0              |0             |0              |0                |0              |0               |ANYCAST      |
 |ExpiryQueue              |ExpiryQueue              |0              |0             |0              |0                |0              |0               |ANYCAST      |
@@ -195,9 +184,9 @@ Finally, you can send some messages to the broker and receive them. Here, we use
 
 Send 100 messages:
 ```shell script
-$ kubectl exec ex-aao-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis producer --user admin --password admin --url tcp://ex-aao-ss-0:61616 --destination myQueue0::myAddress0 --message-count 100
+$ kubectl exec artemis-address-queue-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis producer --user admin --password admin --url tcp://artemis-address-queue-ss-0:61616 --destination myQueue0::myAddress0 --message-count 100
 OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
-Connection brokerURL = tcp://ex-aao-ss-0:61616
+Connection brokerURL = tcp://artemis-address-queue-ss-0:61616
 Producer ActiveMQQueue[myQueue0::myAddress0], thread=0 Started to calculate elapsed time ...
 
 Producer ActiveMQQueue[myQueue0::myAddress0], thread=0 Produced: 100 messages
@@ -206,9 +195,9 @@ Producer ActiveMQQueue[myQueue0::myAddress0], thread=0 Elapsed time in milli sec
 ````
 Now, if you check the queue statistics using the command mentioned in [Step 4](#queuestat), you see that the message count is 100:
 ```shell script
-$ kubectl exec ex-aao-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://ex-aao-ss-0:61616
+$ kubectl exec artemis-address-queue-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://artemis-address-queue-ss-0:61616
 OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
-Connection brokerURL = tcp://ex-aao-ss-0:61616
+Connection brokerURL = tcp://artemis-address-queue-ss-0:61616
 |NAME                     |ADDRESS                  |CONSUMER_COUNT |MESSAGE_COUNT |MESSAGES_ADDED |DELIVERING_COUNT |MESSAGES_ACKED |SCHEDULED_COUNT |ROUTING_TYPE |
 |DLQ                      |DLQ                      |0              |0             |0              |0                |0              |0               |ANYCAST      |
 |ExpiryQueue              |ExpiryQueue              |0              |0             |0              |0                |0              |0               |ANYCAST      |

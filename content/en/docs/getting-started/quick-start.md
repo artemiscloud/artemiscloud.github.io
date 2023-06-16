@@ -15,7 +15,7 @@ toc: true
 
 ## Overview
 
-At the moment these instructions have been tested against Kubernetes 1.20,
+At the moment these instructions have been tested against Kubernetes 1.25 and above,
 other kubernetes or OpenShift environments may require minor adjustment.
 
 One important note about operators in general is that to get the operator
@@ -25,7 +25,7 @@ resource.
 
 ## General environment requirements
 
-Currently the operator is tested against kubernetes v1.20.
+Currently the operator is tested against kubernetes v1.25 and above.
 You can install a [Minikube](https://minikube.sigs.k8s.io/docs/) or a [CodeReady Containers(CRC)](https://developers.redhat.com/products/codeready-containers/overview) to deploy the operator.
 
 ## Getting the code and build the image
@@ -70,18 +70,14 @@ activemq-artemis-controller-manager-5ff459cd95-kn22m   1/1     Running   0      
 
 ## Deploying the broker
 
-Now that the operator is running and listening for changes related to our crd we can deploy [one of our basic broker custom resource examples](https://github.com/artemiscloud/activemq-artemis-operator/blob/main/examples/artemis-basic-deployment.yaml)
+Now that the operator is running and listening for changes related to our crd we can deploy [one of our basic broker custom resource examples](https://github.com/artemiscloud/activemq-artemis-operator/blob/main/examples/artemis/artemis_single.yaml)
 which looks like
 
 ```$xslt
 apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
-  name: ex-aao
-spec:
-  deploymentPlan:
-    size: 1
-    image: placeholder
+  name: artemis-broker
 ```  
 
 Note in particular the **spec.image** which identifies the container image to use to launch the AMQ Broker. If it's empty or 'placeholder' it will get the latest default image url from config/manager/manager.yaml where a list of supported broker image are defined as environment variables.
@@ -89,7 +85,7 @@ Note in particular the **spec.image** which identifies the container image to us
 To deploy the broker simply execute
 
 ```$xslt
-kubectl create -f examples/artemis-basic-deployment.yaml -n activemq-artemis-operator
+kubectl create -f examples/artemis/artemis_single.yaml -n activemq-artemis-operator
 ```
 In a mement you should see one broker pod is created alongside the operator pod:
 
@@ -97,7 +93,7 @@ In a mement you should see one broker pod is created alongside the operator pod:
 $ kubectl get pod
 NAME                                                   READY   STATUS    RESTARTS   AGE
 activemq-artemis-controller-manager-5ff459cd95-kn22m   1/1     Running   0          128m
-ex-aao-ss-0                                            1/1     Running   0          23m
+artemis-broker-ss-0                                    1/1     Running   0          23m
 ```
 
 ## Scaling
@@ -106,21 +102,20 @@ The spec.deploymentPlan.size controls how many broker pods you want to deploy to
 
 For example if you want to scale up the above deployment to 2 pods, modify the size to 2:
 
-examples/artemis-basic-deployment.yaml
+examples/artemis/artemis_single.yaml
 ```$xslt
 apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
-  name: ex-aao
+  name: artemis-broker
 spec:
   deploymentPlan:
     size: 2
-    image: placeholder
 ```
 and apply it:
 
 ```$xslt
-kubectl apply -f examples/artemis-basic-deployment.yaml -n activemq-artemis-operator
+kubectl apply -f examples/artemis/artemis_single.yaml -n activemq-artemis-operator
 ```
 
 and you will get 2 broker pods in the cluster
@@ -129,8 +124,8 @@ and you will get 2 broker pods in the cluster
 kubectl get pod
 NAME                                                   READY   STATUS    RESTARTS   AGE
 activemq-artemis-controller-manager-5ff459cd95-kn22m   1/1     Running   0          140m
-ex-aao-ss-0                                            1/1     Running   0          35m
-ex-aao-ss-1                                            1/1     Running   0          69s
+artemis-broker-ss-0                                    1/1     Running   0          35m
+artemis-broker-ss-1                                    1/1     Running   0          69s
 ```
 
 You can scale down the deployment in similar manner by reducing the size and apply it again.
@@ -145,8 +140,8 @@ By default if broker pods are scaled to more than one then the broker pods form 
 To undeploy the broker we simply execute
 
 ```$xslt
-$ kubectl delete -f examples/artemis-basic-deployment.yaml -n activemq-artemis-operator
-activemqartemis.broker.amq.io "ex-aao" deleted
+$ kubectl delete -f examples/artemis/artemis_single.yaml -n activemq-artemis-operator
+activemqartemis.broker.amq.io "artemis-broker" deleted
 ```
 
 ## Managing Queues
@@ -155,14 +150,14 @@ activemqartemis.broker.amq.io "ex-aao" deleted
 
 Users can use the activemqartemisaddress CRD to create and remove queues/address on a running broker pod.
 
-For example suppose you have deployed a broker pod like above, you can deploy an activemqartemisaddress resouce from the [examples dir](../examples/address-queue-create-auto-removed.yaml):
+For example suppose you have deployed a broker pod like above, you can deploy an activemqartemisaddress resouce from the [examples dir](../examples/address/address_queue.yaml):
 
 address-queue-create-auto-removed.yaml:
 ```$xslt
 apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemisAddress
 metadata:
-  name: ex-aaoaddress
+  name: artemis-address-queue
 spec:
   addressName: myAddress0
   queueName: myQueue0
@@ -173,8 +168,8 @@ spec:
 and the deploy command:
 
 ```$xslt
-$ kubectl create -f examples/address-queue-create-auto-removed.yaml -n activemq-artemis-operator
-activemqartemisaddress.broker.amq.io/ex-aaoaddress created
+$ kubectl create -f examples/address/address_queue.yaml -n activemq-artemis-operator
+activemqartemisaddress.broker.amq.io/artemis-address-queue created
 ```
 
 When it is deployed it will create a queue named **myQueue0** on an address **myAddress0** with **anycast** routing type.
@@ -182,8 +177,8 @@ When it is deployed it will create a queue named **myQueue0** on an address **my
 The **spec.removeFromBrokerOnDelete** controls how to deal with the created queue/address resources when you delete the above custom resource:
 
 ```$xslt
-$ kubectl delete -f examples/address-queue-create-auto-removed.yaml -n activemq-artemis-operator
-activemqartemisaddress.broker.amq.io "ex-aaoaddress" deleted
+$ kubectl delete -f examples/address/address_queue.yaml -n activemq-artemis-operator
+activemqartemisaddress.broker.amq.io "artemis-address-queue" deleted
 ```
 
 If **spec.removeFromBrokerOnDelete** is true, the queue/address resources will be deleted from broker.
@@ -208,7 +203,6 @@ metadata:
 spec:
   deploymentPlan:
     size: 2
-    image: placeholder
     persistenceEnabled: true
     messageMigration: true
 ```

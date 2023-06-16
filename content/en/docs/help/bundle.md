@@ -29,12 +29,6 @@ Before you build the bundle image generate the manifests and metadata:
 ```$xslt
 make IMAGE_TAG_BASE=<bundle image registry> OPERATOR_IMAGE_REPO=<operator image registry> OPERATOR_VERSION=<operator tag> bundle
 ```
-You'll get some warnings like
-
-```$xslt
-WARN[0001] ClusterServiceVersion validation: [OperationFailed] provided API should have an example annotation 
-```
-which can be ignored. It is because the samples in the CSV only have current version.
 
 ### Building the bundle image:
 
@@ -138,7 +132,7 @@ and deploy it:
 An operator will be installed into **operators** namespace.
 
 ```$xslt
-$ kubectl get pod
+$ kubectl get pod -n operators
 NAME                                                              READY   STATUS      RESTARTS   AGE
 9365c56f188be1738a1fabddb5a408a693d8c1f2d7275514556644e52ejpdpj   0/1     Completed   0          2m20s
 activemq-artemis-controller-manager-84d58db649-tkt89              1/1     Running     0          117s

@@ -19,18 +19,18 @@ toc: true
 
 ### A kubernetes cluster
 
-Currently the operator is tested against kubernetes v1.20.
+Currently the operator is tested against kubernetes v1.25 and above.
 You can install a [Minikube](https://minikube.sigs.k8s.io/docs/) or a [CodeReady Containers(CRC)](https://developers.redhat.com/products/codeready-containers/overview) to deploy the operator.
 
 ### Docker
 
-Current version being used is v20.10. Checkout [this page](https://docs.docker.com/get-docker/) for help on installing docker on your specific operating system.
+Current version being used is v23.0.3. Checkout [this page](https://docs.docker.com/get-docker/) for help on installing docker on your specific operating system.
 
-### Go v1.17
+### Go v1.19
 
-Install Go version v1.17 following [this guide](https://go.dev/doc/install).
+Install Go version v1.19 following [this guide](https://go.dev/doc/install).
 
-### operator-sdk v1.15.0
+### operator-sdk v1.28.0
 
 Install [operator-sdk](https://sdk.operatorframework.io/) following [this guide](https://sdk.operatorframework.io/docs/installation/).
 

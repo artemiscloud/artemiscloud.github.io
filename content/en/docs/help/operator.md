@@ -23,12 +23,12 @@ because the CRD gets exposed automatically through Kubernetes.
 
 The following CRD's are available for the Operator and can be found in the Operator Repository under *config/crd/bases/*
 
-| CRD                 | Description                                                    | 
-| :---                |    :----:                                                      |  
-| **Main broker CRD** | Create and configure a broker deployment                       | 
-| **Address CRD**     | Create addresses and queues for a broker deployment            |
-| **Scaledown CRD**   | Creates a Scaledown Controller for message migration           | 
-| **Security CRD**    | Configure the security and authentication method of the Broker |
+| CRD                 | Description                                                    |           Name            | Shortname  |
+| :---                | :----:                                                         | :----:                    | :---:      |
+| **Main broker CRD** | Create and configure a broker deployment                       |     activemqartemises     |     aa     |
+| **Address CRD**     | Create addresses and queues for a broker deployment            | activemqartemisaddresses  |    aaa     |
+| **Scaledown CRD**   | Creates a Scaledown Controller for message migration           | activemqartemisscaledowns |    aad     |
+| **Security CRD**    | Configure the security and authentication method of the Broker | activemqartemissecurities |    aas     |
 
 ### Additional resources
 
@@ -490,9 +490,9 @@ However, when the scaledown operation is complete, the Operator restores the dep
 ## Configuring Scheduling, Preemption and Eviction
 
 
-### Liveness and Readiness Probes
+### Liveness, Readiness and Startup Probes
 
-The Liveness and readiness Probes are used by Kubernetes to detect when the Broker is started and to check it is still alive. 
+The Liveness, Readiness Startup Probes are used by Kubernetes to detect when the Broker is started and to check it is still alive. 
 For full documentation on this topic refer to the [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) 
 chapter in the Kubernetes documentation.
 
@@ -606,6 +606,28 @@ As with the Liveness Probe the Readiness probe has a default probe if not config
 a script that is shipped in the Kubernetes Image, this can be found [here](https://github.com/artemiscloud/activemq-artemis-broker-kubernetes-image/blob/main/modules/activemq-artemis-launch/added/readinessProbe.sh)
 
 The script will try to establish a tcp connection to each port configured in the broker.xml.  
+
+#### The Startup Probe
+
+The Startup Probe has no default probe if not configured. The Startup Probe is configured in the Artemis CR something like:
+
+```yaml
+spec:
+  deploymentPlan:
+    startupProbe:
+      exec:
+        command:
+            - /bin/bash
+            - '-c'
+            - /opt/amq/bin/artemis
+            - 'check'
+            - 'node'
+            - '--up'
+            - '--url'
+            - 'tcp://$HOSTNAME:61616'
+      initialDelaySeconds: 5
+      periodSeconds: 5
+```
 
 ###  Tolerations
 
@@ -826,7 +848,6 @@ For example, here we have two instances of the PropertiesLoginModule, one that r
 				// a custom LoginModule that will reload from this secret
 				org.apache.activemq.artemis.spi.core.security.jaas.PropertiesLoginModule sufficient
 					reload=true
-					// these files will be provided by the secret
 					org.apache.activemq.jaas.properties.user="users.properties"
 					org.apache.activemq.jaas.properties.role="roles.properties";
 
