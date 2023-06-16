@@ -12,8 +12,16 @@ instance running on your laptop will do fine. The ArtemisCloud Operator can also
 </code></pre><p>We will use a namespace called <strong>myproject</strong> to deploy the operator and other resources.
 If you don&rsquo;t specify a namespace the <strong>default</strong> namespace will be used.</p><p>The following command will create the namespace:</p><pre><code class=language-shell>$ kubectl create namespace myproject
 namespace/myproject created
-</code></pre><p>Go to the root of the local repo and install the operator:</p><pre><code class=language-shell>      $ cd activemq-artemis-operator
-      $ ./deploy/install_opr.sh
+</code></pre><p>Go to the root of the local repo and set up the service account and permissions needed for Operator deployment:</p><pre><code class=language-shell>      $ cd activemq-artemis-operator
+      $ kubectl create -f deploy/service_account.yaml --namespace myproject
+      $ kubectl create -f deploy/role.yaml --namespace myproject
+      $ kubectl create -f deploy/role_binding.yaml --namespace myproject
+</code></pre><p>Deploy all the Custom Resource Definitions (CRDs) that the Operator supports:</p><pre><code class=language-shell>      # Broker CRD
+      $ kubectl create -f deploy/crds/broker_activemqartemis_crd.yaml
+      # Address CRD
+      $ kubectl create -f deploy/crds/broker_activemqartemisaddress_crd.yaml
+      # Scaledown CRD
+      $ kubectl create -f deploy/crds/broker_activemqartemisscaledown_crd.yaml
 </code></pre><blockquote><p><strong><em>NOTE:</em></strong> You might see some warning messages while deploying the CRDs. For example:
 <em>&ldquo;Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use
 apiextensions.k8s.io/v1 CustomResourceDefinition customresourcedefinition.apiextensions.k8s.io/activemqartemises.broker.amq.io created&rdquo;</em>.
@@ -27,9 +35,9 @@ activemq-artemis-operator-58bb658f4c-gthwb   1/1     Running   0          12s
 </code></pre><p>Watch the broker Pod start up:</p><pre><code class=language-shell>$ kubectl get pod -n myproject
 NAME                                         READY   STATUS    RESTARTS   AGE
 activemq-artemis-operator-58bb658f4c-gthwb   1/1     Running   0          14m
-artemis-broker-ss-0                          1/1     Running   0          61s
+ex-aao-ss-0                                  1/1     Running   0          61s
 
-</code></pre><p>Behind the scenes, the Operator watches CR deployments in the target namespace. When the broker CR is deployed, the Operator configures and deploys the broker Pod into the cluster.</p><p>To see details for startup of the broker Pod you can get the console log from the Pod:</p><pre><code class=language-shell>$ kubectl logs artemis-broker-ss-0 -n myproject
+</code></pre><p>Behind the scenes, the Operator watches CR deployments in the target namespace. When the broker CR is deployed, the Operator configures and deploys the broker Pod into the cluster.</p><p>To see details for startup of the broker Pod you can get the console log from the Pod:</p><pre><code class=language-shell>$ kubectl logs ex-aao-ss-0 -n myproject
 -XX:+UseParallelOldGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:MaxMetaspaceSize=100m -XX:+ExitOnOutOfMemoryError
 Removing provided -XX:+UseParallelOldGC in favour of artemis.profile provided option
 Running server env: home: /home/jboss AMQ_HOME /opt/amq CONFIG_BROKER false RUN_BROKER
@@ -57,12 +65,12 @@ OpenJDK 64-Bit Server VM warning: If the number of processors is expected to inc
 2021-02-18 06:00:07,349 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1,045,430,272
 2021-02-18 06:00:07,781 WARNING [org.jgroups.stack.Configurator] JGRP000014: BasicTCP.use_send_queues has been deprecated: will be removed in 4.0
 2021-02-18 06:00:07,814 WARNING [org.jgroups.stack.Configurator] JGRP000014: Discovery.timeout has been deprecated: GMS.join_timeout should be used instead
-2021-02-18 06:00:07,943 INFO  [org.jgroups.protocols.openshift.DNS_PING] serviceName [artemis-broker-ping-svc] set; clustering enabled
+2021-02-18 06:00:07,943 INFO  [org.jgroups.protocols.openshift.DNS_PING] serviceName [ex-aao-ping-svc] set; clustering enabled
 2021-02-18 06:00:11,047 INFO  [org.openshift.ping.common.Utils] 3 attempt(s) with a 1000ms sleep to execute [GetServicePort] failed. Last failure was [javax.naming.NameNotFoundException: DNS name not found [response code 3]]
-2021-02-18 06:00:11,048 WARNING [org.jgroups.protocols.openshift.DNS_PING] No DNS SRV record found for service [artemis-broker-ping-svc]
+2021-02-18 06:00:11,048 WARNING [org.jgroups.protocols.openshift.DNS_PING] No DNS SRV record found for service [ex-aao-ping-svc]
 
 -------------------------------------------------------------------
-GMS: address=artemis-broker-ss-0-6103, cluster=activemq_broadcast_channel, physical address=172.17.0.4:7800
+GMS: address=ex-aao-ss-0-6103, cluster=activemq_broadcast_channel, physical address=172.17.0.4:7800
 -------------------------------------------------------------------
 2021-02-18 06:00:14,217 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
 2021-02-18 06:00:14,219 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
@@ -76,7 +84,7 @@ GMS: address=artemis-broker-ss-0-6103, cluster=activemq_broadcast_channel, physi
 2021-02-18 06:00:14,539 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue DLQ on address DLQ
 2021-02-18 06:00:14,658 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address ExpiryQueue supporting [ANYCAST]
 2021-02-18 06:00:14,660 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue ExpiryQueue on address ExpiryQueue
-2021-02-18 06:00:15,019 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started EPOLL Acceptor at artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:61616 for protocols [CORE]
+2021-02-18 06:00:15,019 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started EPOLL Acceptor at ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:61616 for protocols [CORE]
 2021-02-18 06:00:15,022 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now live
 2021-02-18 06:00:15,023 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache ActiveMQ Artemis Message Broker version 2.16.0 [amq-broker, nodeID=8d13dfd2-71ae-11eb-b7ec-0242ac110004]
 2021-02-18 06:00:15,981 INFO  [org.apache.activemq.hawtio.branding.PluginContextListener] Initialized activemq-branding plugin
@@ -87,39 +95,39 @@ GMS: address=artemis-broker-ss-0-6103, cluster=activemq_broadcast_channel, physi
 2021-02-18 06:00:16,816 INFO  [io.hawt.web.auth.AuthenticationConfiguration] Starting hawtio authentication filter, JAAS realm: &quot;activemq&quot; authorized role(s): &quot;admin&quot; role principal classes: &quot;org.apache.activemq.artemis.spi.core.security.jaas.RolePrincipal&quot;
 2021-02-18 06:00:16,855 INFO  [io.hawt.web.proxy.ProxyServlet] Proxy servlet is disabled
 2021-02-18 06:00:16,866 INFO  [io.hawt.web.servlets.JolokiaConfiguredAgentServlet] Jolokia overridden property: [key=policyLocation, value=file:/home/jboss/amq-broker/etc/jolokia-access.xml]
-2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241001: HTTP Server started at http://artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:8161
-2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241002: Artemis Jolokia REST API available at http://artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:8161/console/jolokia
-2021-02-18 06:00:17,039 INFO  [org.apache.activemq.artemis] AMQ241004: Artemis Console available at http://artemis-broker-ss-0.artemis-broker-hdls-svc.myproject.svc.cluster.local:8161/console
-</code></pre><h3 id=step-4---create-a-queue-using-the-operator>Step 4 - Create a queue using the Operator <a href=#step-4---create-a-queue-using-the-operator class=anchor aria-hidden=true>#</a></h3><p>Now, let&rsquo;s create a message queue in the broker:</p><pre><code class=language-shell>$ kubectl create -f examples/address/address_queue.yaml -n myproject
-activemqartemisaddress.broker.amq.io/artemis-address-queue created
-</code></pre><p>The <em>address_queue.yaml</em> is another CR supported by the ArtemisCloud Operator. Its content is shown below:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
-kind: ActiveMQArtemisAddress
-metadata:
-  name: artemis-address-queue
-spec:
-  addressName: myAddress0
-  queueName: myQueue0
-  routingType: anycast
-  removeFromBrokerOnDelete: true
-</code></pre><p>The CR tells the Operator to create a queue named <strong>myQueue0</strong> on address <strong>myAddress0</strong> on each broker that it manages.</p><p>After the CR is deployed, you can observe the queue on the broker:</p><p><a name=queuestat></a></p><pre><code class=language-shell>$ kubectl exec artemis-address-queue-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://artemis-address-queue-ss-0:61616
+2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241001: HTTP Server started at http://ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:8161
+2021-02-18 06:00:17,038 INFO  [org.apache.activemq.artemis] AMQ241002: Artemis Jolokia REST API available at http://ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:8161/console/jolokia
+2021-02-18 06:00:17,039 INFO  [org.apache.activemq.artemis] AMQ241004: Artemis Console available at http://ex-aao-ss-0.ex-aao-hdls-svc.myproject.svc.cluster.local:8161/console
+</code></pre><h3 id=step-4---create-a-queue-using-the-operator>Step 4 - Create a queue using the Operator <a href=#step-4---create-a-queue-using-the-operator class=anchor aria-hidden=true>#</a></h3><p>Now, let&rsquo;s create a message queue in the broker:</p><pre><code class=language-shell>$ kubectl create -f examples/address-queue-create-auto-removed.yaml -n myproject
+activemqartemisaddress.broker.amq.io/ex-aaoaddress created
+</code></pre><p>The <em>address-queue-create-auto-removed.yaml</em> is another CR supported by the ArtemisCloud Operator. Its content is shown below:</p><pre><code class=language-yaml>      apiVersion: broker.amq.io/v2alpha2
+      kind: ActiveMQArtemisAddress
+      metadata:
+      name: ex-aaoaddress
+      spec:
+      addressName: myAddress0
+      queueName: myQueue0
+      routingType: anycast
+      removeFromBrokerOnDelete: true
+</code></pre><p>The CR tells the Operator to create a queue named <strong>myQueue0</strong> on address <strong>myAddress0</strong> on each broker that it manages.</p><p>After the CR is deployed, you can observe the queue on the broker:</p><p><a name=queuestat></a></p><pre><code class=language-shell>$ kubectl exec ex-aao-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://ex-aao-ss-0:61616
 OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
-Connection brokerURL = tcp://artemis-address-queue-ss-0:61616
+Connection brokerURL = tcp://ex-aao-ss-0:61616
 |NAME                     |ADDRESS                  |CONSUMER_COUNT |MESSAGE_COUNT |MESSAGES_ADDED |DELIVERING_COUNT |MESSAGES_ACKED |SCHEDULED_COUNT |ROUTING_TYPE |
 |DLQ                      |DLQ                      |0              |0             |0              |0                |0              |0               |ANYCAST      |
 |ExpiryQueue              |ExpiryQueue              |0              |0             |0              |0                |0              |0               |ANYCAST      |
 |activemq.management.a5037b80-fbb7-48b8-93d2-f505d7a39aae|activemq.management.a5037b80-fbb7-48b8-93d2-f505d7a39aae|1              |0             |0              |0                |0              |0               |MULTICAST    |
 |myQueue0                 |myAddress0               |0              |0             |0              |0                |0              |0               |ANYCAST      |
-</code></pre><h3 id=step-5---sending-and-receiving-messages>Step 5 - Sending and Receiving messages <a href=#step-5---sending-and-receiving-messages class=anchor aria-hidden=true>#</a></h3><p>Finally, you can send some messages to the broker and receive them. Here, we use the <code>artemis</code> CLI tool that comes with the deployed broker instance for the test.</p><p>Send 100 messages:</p><pre><code class=language-shell>$ kubectl exec artemis-address-queue-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis producer --user admin --password admin --url tcp://artemis-address-queue-ss-0:61616 --destination myQueue0::myAddress0 --message-count 100
+</code></pre><h3 id=step-5---sending-and-receiving-messages>Step 5 - Sending and Receiving messages <a href=#step-5---sending-and-receiving-messages class=anchor aria-hidden=true>#</a></h3><p>Finally, you can send some messages to the broker and receive them. Here, we use the <code>artemis</code> CLI tool that comes with the deployed broker instance for the test.</p><p>Send 100 messages:</p><pre><code class=language-shell>$ kubectl exec ex-aao-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis producer --user admin --password admin --url tcp://ex-aao-ss-0:61616 --destination myQueue0::myAddress0 --message-count 100
 OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
-Connection brokerURL = tcp://artemis-address-queue-ss-0:61616
+Connection brokerURL = tcp://ex-aao-ss-0:61616
 Producer ActiveMQQueue[myQueue0::myAddress0], thread=0 Started to calculate elapsed time ...
 
 Producer ActiveMQQueue[myQueue0::myAddress0], thread=0 Produced: 100 messages
 Producer ActiveMQQueue[myQueue0::myAddress0], thread=0 Elapsed time in second : 0 s
 Producer ActiveMQQueue[myQueue0::myAddress0], thread=0 Elapsed time in milli second : 505 milli seconds
-</code></pre><p>Now, if you check the queue statistics using the command mentioned in <a href=#queuestat>Step 4</a>, you see that the message count is 100:</p><pre><code class=language-shell>$ kubectl exec artemis-address-queue-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://artemis-address-queue-ss-0:61616
+</code></pre><p>Now, if you check the queue statistics using the command mentioned in <a href=#queuestat>Step 4</a>, you see that the message count is 100:</p><pre><code class=language-shell>$ kubectl exec ex-aao-ss-0 -n myproject -- /bin/bash /home/jboss/amq-broker/bin/artemis queue stat --user admin --password admin --url tcp://ex-aao-ss-0:61616
 OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
-Connection brokerURL = tcp://artemis-address-queue-ss-0:61616
+Connection brokerURL = tcp://ex-aao-ss-0:61616
 |NAME                     |ADDRESS                  |CONSUMER_COUNT |MESSAGE_COUNT |MESSAGES_ADDED |DELIVERING_COUNT |MESSAGES_ACKED |SCHEDULED_COUNT |ROUTING_TYPE |
 |DLQ                      |DLQ                      |0              |0             |0              |0                |0              |0               |ANYCAST      |
 |ExpiryQueue              |ExpiryQueue              |0              |0             |0              |0                |0              |0               |ANYCAST      |
@@ -129,4 +137,4 @@ Connection brokerURL = tcp://artemis-address-queue-ss-0:61616
 </code></pre><h3 id=further-information>Further information <a href=#further-information class=anchor aria-hidden=true>#</a></h3><ul><li><a href=https://github.com/artemiscloud>ArtemisCloud Github Repo</a></li></ul><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/tutorials/ssl_broker_setup/><div class="card my-1"><div class="card-body py-2">&larr; Setting up SSL connections with ArtemisCloud Operator</div></div></a><a class=ms-auto href=/docs/tutorials/initcontainer/><div class="card my-1"><div class="card-body py-2">Using the custom init image &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-fluid><div class=row><div class=col><a href=https://www.redhat.com/><img height=32px src=/images/Logo-Red_Hat-Sponsored_By-A-Standard-RGB.png alt="Red Hat"></a></div><div class=col-10><p style=font-size:12px>Apache, Apache ActiveMQ Artemis,Artemis and associated open source project names are trademarks of the <a href=https://www.apache.org/>Apache Software Foundation</a>.</p></div></div></div></footer><script src=/js/bootstrap.min.0a0106334435d4110713bfaff4acaf02533b0c56d44412a74e9518db07672ddb7e099a9c7517bc9cb529e2ddd4ae2e438b40b720288900d5e74fb6d8928d9097.js integrity="sha512-CgEGM0Q11BEHE7+v9KyvAlM7DFbURBKnTpUY2wdnLdt+CZqcdRe8nLUp4t3Uri5Di0C3ICiJANXnT7bYko2Qlw==" crossorigin=anonymous defer></script>
 <script src=/js/highlight.min.0d31f7af12feb83ee633b6351b023ee643ea3412376fbaa09c5a26d1a5ef999939f1ad379a5b12e1199a2c7d72ae1b23f633060a679628dcbfb0e72378cd20be.js integrity="sha512-DTH3rxL+uD7mM7Y1GwI+5kPqNBI3b7qgnFom0aXvmZk58a03mlsS4RmaLH1yrhsj9jMGCmeWKNy/sOcjeM0gvg==" crossorigin=anonymous defer></script>
 <script src=/main.min.6afc4bf655f45ae3e63629ec95be8bd2e0e792084b5635a6fe70b169fa9d1491638b3a4e900ed59c2e017ca18768e5c392e110d0e1336509f49f7dc418d16eef.js integrity="sha512-avxL9lX0WuPmNinslb6L0uDnkghLVjWm/nCxafqdFJFjizpOkA7VnC4BfKGHaOXDkuEQ0OEzZQn0n33EGNFu7w==" crossorigin=anonymous defer></script>
-<script src=/index.min.07ce0ed2e3c011aa0e51c13ea839d9723daa61f8b40c3ea17f3827f97050095f88d0b45ce45ca13a09025bd62f2b1ffa473c795b72f1771908561edded82a955.js integrity="sha512-B84O0uPAEaoOUcE+qDnZcj2qYfi0DD6hfzgn+XBQCV+I0LRc5FyhOgkCW9YvKx/6Rzx5W3LxdxkIVh7d7YKpVQ==" crossorigin=anonymous defer></script></body></html>
+<script src=/index.min.dcef8309ae08a0ba061bd2b4c2c832acfc7894dd42d2c6285265409b5c420c2909b528bcb1d6b21a7a67d774e851e8241952da64c10bf03392e0b8bab2ea26fc.js integrity="sha512-3O+DCa4IoLoGG9K0wsgyrPx4lN1C0sYoUmVAm1xCDCkJtSi8sdayGnpn13ToUegkGVLaZMEL8DOS4Li6suom/A==" crossorigin=anonymous defer></script></body></html>
