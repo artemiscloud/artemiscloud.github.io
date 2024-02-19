@@ -758,6 +758,30 @@ spec:
        someKey: "somevalue"
 ```
 
+## Custom mods via a strategic merge patch
+Occasionally it is necessary to make customisations to the spec of a managed resource. The `resourceTemplate. patch` attribute can be used to apply such customisations. The `patch` is appled by the operator using a [strategic merge](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/#notes-on-the-strategic-merge-patch) before submitting to the api server.
+In the following example, a custom security context is added to the internal broker container of the managed StatefulSet by patching just the required attribute. Note: `name` is the mergeKey, it must match that of the managed container with the CR.Name prefix:
+
+```yaml
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: broker
+spec:
+  resourceTemplates:
+  - selector:
+     kind: "StatefulSet"
+    patch:
+     kind: "StatefulSet"
+     spec:
+      template:
+       spec:
+        containers:
+        - name: "broker-container"
+          securityContext:
+           runAsNonRoot: true
+```
+
 ### Setting  Environment Variables
 
 As an advanced option, you can set environment variables for containers using a CR.
@@ -800,6 +824,12 @@ spec:
   brokerProperties:
     - globalMaxSize=512m
 ```
+
+## Providing additional brokerProperties configuration from a secret
+It is possible to replace the use of the activemqartemisaddresses CRD and much of the activemqartemissecurities CRD with configuration via broker properties. This can necessitate a large amount of configuration in the CR.brokerPropertis field.
+In order to provide a way to split or orgainse these properties by file or by secret, an extra mount can be used to provide a secret that will be treated as an additional source of broker properties configuration.
+Using an **extraMounts** secret with a suffix "-bp" will cause the operator to auto mount the secret and make the broker aware of it's location. In addition the CR.Status.Condition[BrokerPropertiesApplied] will reflect the content of this secret.
+Broker properties are applied in order, starting with the CR.brokerProperties and then with the "-bp" auto mounts in turn. Keys (or property files) from secrets are applied in alphabetical order.
 
 
 ## Configuring Logging for Brokers
