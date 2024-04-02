@@ -6,7 +6,7 @@ Help</button><div class="collapse show" id=section-6a26f548831e6a8c26bfbbd9f6ec6
 Tutorials</button><div class=collapse id=section-130ddfce9c28453883ccfe2da8b6d5ac><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/tutorials/deploybasicimage/>Deploying the Basic Broker Image</a></li><li><a class="docs-link rounded" href=/docs/tutorials/external_mqtt_clients/>Connecting to the broker from external mqtt clients</a></li><li><a class="docs-link rounded" href=/docs/tutorials/scaleup_and_scaledown/>Scaling Up and Down Brokers with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/ssl_broker_setup/>Setting up SSL connections with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/cert-manager-and-trust-manager/>Setting up SSL with cert-manager and trust-manager</a></li><li><a class="docs-link rounded" href=/docs/tutorials/using_operator/>Using the ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/initcontainer/>Using the custom init image</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-fluid" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-cb59b87e00d11222bfd9159d0d23836f aria-expanded=false>
 Getting started</button><div class=collapse id=section-cb59b87e00d11222bfd9159d0d23836f><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/getting-started/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=/docs/getting-started/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=true>
 Help</button><div class="collapse show" id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/help/building/>Building</a></li><li><a class="docs-link rounded" href=/docs/help/bundle/>Bundle</a></li><li><a class="docs-link rounded" href=/docs/help/custom-resources/>Custom Resources</a></li><li><a class="docs-link rounded" href=/docs/help/images/>Images</a></li><li><a class="docs-link rounded active" href=/docs/help/operator/>Operator</a></li><li><a class="docs-link rounded" href=/docs/help/logging-guidelines/></a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-130ddfce9c28453883ccfe2da8b6d5ac aria-expanded=false>
-Tutorials</button><div class=collapse id=section-130ddfce9c28453883ccfe2da8b6d5ac><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/tutorials/deploybasicimage/>Deploying the Basic Broker Image</a></li><li><a class="docs-link rounded" href=/docs/tutorials/external_mqtt_clients/>Connecting to the broker from external mqtt clients</a></li><li><a class="docs-link rounded" href=/docs/tutorials/scaleup_and_scaledown/>Scaling Up and Down Brokers with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/ssl_broker_setup/>Setting up SSL connections with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/cert-manager-and-trust-manager/>Setting up SSL with cert-manager and trust-manager</a></li><li><a class="docs-link rounded" href=/docs/tutorials/using_operator/>Using the ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/initcontainer/>Using the custom init image</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#overview-of-the-artemiscloud-operator-custom-resource-definitions>Overview of the ArtemisCloud Operator Custom Resource Definitions</a><ul><li><a href=#additional-resources>Additional resources</a></li><li><a href=#operator-deployment-notes>Operator deployment notes</a></li></ul></li><li><a href=#installing-the-operator-using-the-cli>Installing the Operator using the CLI</a></li><li><a href=#configuring-logging-for-the-operator>Configuring logging for the Operator</a><ul><li><a href=#getting-the-operator-code>Getting the Operator code</a></li><li><a href=#preparing-the-kubernetes-environment>Preparing the kubernetes Environment</a></li><li><a href=#deploy-the-operator>Deploy The Operator</a></li></ul></li><li><a href=#creating-operator-based-broker-deployments>Creating Operator-based broker deployments</a><ul><li><a href=#deploying-a-basic-broker-instance>Deploying a basic broker instance</a></li><li><a href=#deploying-clustered-brokers>Deploying clustered brokers</a></li><li><a href=#applying-custom-resource-changes-to-running-broker-deployments>Applying Custom Resource changes to running broker deployments</a></li></ul></li><li><a href=#configuring-scheduling-preemption-and-eviction>Configuring Scheduling, Preemption and Eviction</a><ul><li><a href=#liveness-readiness-and-startup-probes>Liveness, Readiness and Startup Probes</a></li><li><a href=#tolerations>Tolerations</a></li><li><a href=#affinity>Affinity</a></li><li><a href=#labels-and-node-selectors>Labels and Node Selectors</a></li><li><a href=#annotations>Annotations</a></li><li><a href=#custom-labels-and-annotations-on-supporting-resources-services-ingress-secrets-etc>Custom Labels and Annotations on supporting resources; Services, Ingress, Secrets etc.</a></li></ul></li><li><a href=#custom-mods-via-a-strategic-merge-patch>Custom mods via a strategic merge patch</a><ul><li><a href=#setting--environment-variables>Setting Environment Variables</a></li></ul></li><li><a href=#configuring-brokerproperties>Configuring brokerProperties</a></li><li><a href=#providing-additional-brokerproperties-configuration-from-a-secret>Providing additional brokerProperties configuration from a secret</a></li><li><a href=#configuring-logging-for-brokers>Configuring Logging for Brokers</a></li><li><a href=#configuring-jaas-for-brokers>Configuring JAAS for Brokers</a></li><li><a href=#locking-down-a-broker-deployment>Locking down a broker deployment</a></li><li><a href=#enable-brokers-metrics-plugin>Enable broker&rsquo;s metrics plugin</a><ul><li><a href=#enable-jvm-metrics>Enable JVM metrics</a></li><li><a href=#monitor-broker-metrics-by-using-prometheus>Monitor broker metrics by using Prometheus</a></li></ul></li><li><a href=#enabling-operator-metrics>Enabling Operator Metrics</a></li><li><a href=#configuring-poddisruptionbudget-for-broker-deployment>Configuring PodDisruptionBudget for broker deployment</a></li><li><a href=#configuring-topologyspreadconstraints-for-broker-deployment>Configuring TopologySpreadConstraints for broker deployment</a><ul><li><a href=#container-securitycontext>Container SecurityContext</a></li></ul></li><li><a href=#configuring-jolokia-access>Configuring Jolokia Access</a></li><li><a href=#configuring-additional-volumes-to-the-broker>Configuring Additional Volumes to the Broker</a><ul><li><a href=#attaching-extra-volumes-shared-by-all-broker-pods>Attaching extra volumes shared by all broker pods</a></li><li><a href=#attaching-extra-persistent-volume-claims-to-each-broker>Attaching extra persistent volume claims to each broker</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl"><h1>Operator</h1><p class=lead>Operator ArtemisCloud.io</p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#overview-of-the-artemiscloud-operator-custom-resource-definitions>Overview of the ArtemisCloud Operator Custom Resource Definitions</a><ul><li><a href=#additional-resources>Additional resources</a></li><li><a href=#operator-deployment-notes>Operator deployment notes</a></li></ul></li><li><a href=#installing-the-operator-using-the-cli>Installing the Operator using the CLI</a></li><li><a href=#configuring-logging-for-the-operator>Configuring logging for the Operator</a><ul><li><a href=#getting-the-operator-code>Getting the Operator code</a></li><li><a href=#preparing-the-kubernetes-environment>Preparing the kubernetes Environment</a></li><li><a href=#deploy-the-operator>Deploy The Operator</a></li></ul></li><li><a href=#creating-operator-based-broker-deployments>Creating Operator-based broker deployments</a><ul><li><a href=#deploying-a-basic-broker-instance>Deploying a basic broker instance</a></li><li><a href=#deploying-clustered-brokers>Deploying clustered brokers</a></li><li><a href=#applying-custom-resource-changes-to-running-broker-deployments>Applying Custom Resource changes to running broker deployments</a></li></ul></li><li><a href=#configuring-scheduling-preemption-and-eviction>Configuring Scheduling, Preemption and Eviction</a><ul><li><a href=#liveness-readiness-and-startup-probes>Liveness, Readiness and Startup Probes</a></li><li><a href=#tolerations>Tolerations</a></li><li><a href=#affinity>Affinity</a></li><li><a href=#labels-and-node-selectors>Labels and Node Selectors</a></li><li><a href=#annotations>Annotations</a></li><li><a href=#custom-labels-and-annotations-on-supporting-resources-services-ingress-secrets-etc>Custom Labels and Annotations on supporting resources; Services, Ingress, Secrets etc.</a></li></ul></li><li><a href=#custom-mods-via-a-strategic-merge-patch>Custom mods via a strategic merge patch</a><ul><li><a href=#setting--environment-variables>Setting Environment Variables</a></li></ul></li><li><a href=#configuring-brokerproperties>Configuring brokerProperties</a></li><li><a href=#providing-additional-brokerproperties-configuration-from-a-secret>Providing additional brokerProperties configuration from a secret</a></li><li><a href=#configuring-logging-for-brokers>Configuring Logging for Brokers</a></li><li><a href=#configuring-jaas-for-brokers>Configuring JAAS for Brokers</a></li><li><a href=#locking-down-a-broker-deployment>Locking down a broker deployment</a></li><li><a href=#enable-brokers-metrics-plugin>Enable broker&rsquo;s metrics plugin</a><ul><li><a href=#enable-jvm-metrics>Enable JVM metrics</a></li><li><a href=#monitor-broker-metrics-by-using-prometheus>Monitor broker metrics by using Prometheus</a></li></ul></li><li><a href=#enabling-operator-metrics>Enabling Operator Metrics</a></li><li><a href=#configuring-poddisruptionbudget-for-broker-deployment>Configuring PodDisruptionBudget for broker deployment</a></li><li><a href=#configuring-topologyspreadconstraints-for-broker-deployment>Configuring TopologySpreadConstraints for broker deployment</a><ul><li><a href=#container-securitycontext>Container SecurityContext</a></li></ul></li><li><a href=#configuring-jolokia-access>Configuring Jolokia Access</a></li><li><a href=#configuring-additional-volumes-to-the-broker>Configuring Additional Volumes to the Broker</a><ul><li><a href=#attaching-extra-volumes-shared-by-all-broker-pods>Attaching extra volumes shared by all broker pods</a></li><li><a href=#attaching-extra-persistent-volume-claims-to-each-broker>Attaching extra persistent volume claims to each broker</a></li></ul></li></ul></nav></div></nav><h2 id=overview-of-the-artemiscloud-operator-custom-resource-definitions>Overview of the ArtemisCloud Operator Custom Resource Definitions <a href=#overview-of-the-artemiscloud-operator-custom-resource-definitions class=anchor aria-hidden=true>#</a></h2><p>In general, a Custom Resource Definition (CRD) is a schema of configuration items that you can modify for a custom Kubernetes
+Tutorials</button><div class=collapse id=section-130ddfce9c28453883ccfe2da8b6d5ac><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/tutorials/deploybasicimage/>Deploying the Basic Broker Image</a></li><li><a class="docs-link rounded" href=/docs/tutorials/external_mqtt_clients/>Connecting to the broker from external mqtt clients</a></li><li><a class="docs-link rounded" href=/docs/tutorials/scaleup_and_scaledown/>Scaling Up and Down Brokers with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/ssl_broker_setup/>Setting up SSL connections with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/cert-manager-and-trust-manager/>Setting up SSL with cert-manager and trust-manager</a></li><li><a class="docs-link rounded" href=/docs/tutorials/using_operator/>Using the ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/initcontainer/>Using the custom init image</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#overview-of-the-artemiscloud-operator-custom-resource-definitions>Overview of the ArtemisCloud Operator Custom Resource Definitions</a><ul><li><a href=#additional-resources>Additional resources</a></li><li><a href=#operator-deployment-notes>Operator deployment notes</a></li></ul></li><li><a href=#installing-the-operator-using-the-cli>Installing the Operator using the CLI</a></li><li><a href=#configuring-logging-for-the-operator>Configuring logging for the Operator</a><ul><li><a href=#getting-the-operator-code>Getting the Operator code</a></li><li><a href=#preparing-the-kubernetes-environment>Preparing the kubernetes Environment</a></li><li><a href=#deploy-the-operator>Deploy The Operator</a></li></ul></li><li><a href=#creating-operator-based-broker-deployments>Creating Operator-based broker deployments</a><ul><li><a href=#deploying-a-basic-broker-instance>Deploying a basic broker instance</a></li><li><a href=#deploying-clustered-brokers>Deploying clustered brokers</a></li><li><a href=#applying-custom-resource-changes-to-running-broker-deployments>Applying Custom Resource changes to running broker deployments</a></li></ul></li><li><a href=#configuring-scheduling-preemption-and-eviction>Configuring Scheduling, Preemption and Eviction</a><ul><li><a href=#liveness-readiness-and-startup-probes>Liveness, Readiness and Startup Probes</a></li><li><a href=#tolerations>Tolerations</a></li><li><a href=#affinity>Affinity</a></li><li><a href=#node-selectors>Node Selectors</a></li><li><a href=#priority-class>Priority Class</a></li></ul></li><li><a href=#configuring-labels-and-annotations>Configuring Labels and Annotations</a><ul><li><a href=#labels>Labels</a></li><li><a href=#annotations>Annotations</a></li><li><a href=#custom-labels-and-annotations-on-supporting-resources-services-ingress-secrets-etc>Custom Labels and Annotations on supporting resources; Services, Ingress, Secrets etc.</a></li></ul></li><li><a href=#custom-modifications-via-a-strategic-merge-patch>Custom Modifications via a Strategic Merge Patch</a></li><li><a href=#setting--environment-variables>Setting Environment Variables</a></li><li><a href=#configuring-brokerproperties>Configuring brokerProperties</a></li><li><a href=#providing-additional-brokerproperties-configuration-from-a-secret>Providing additional brokerProperties configuration from a secret</a></li><li><a href=#configuring-logging-for-brokers>Configuring Logging for Brokers</a></li><li><a href=#configuring-jaas-for-brokers>Configuring JAAS for Brokers</a></li><li><a href=#locking-down-a-broker-deployment>Locking down a broker deployment</a></li><li><a href=#enable-brokers-metrics-plugin>Enable broker&rsquo;s metrics plugin</a><ul><li><a href=#enable-jvm-metrics>Enable JVM metrics</a></li><li><a href=#monitor-broker-metrics-by-using-prometheus>Monitor broker metrics by using Prometheus</a></li></ul></li><li><a href=#enabling-operator-metrics>Enabling Operator Metrics</a></li><li><a href=#configuring-poddisruptionbudget-for-broker-deployment>Configuring PodDisruptionBudget for broker deployment</a></li><li><a href=#configuring-topologyspreadconstraints-for-broker-deployment>Configuring TopologySpreadConstraints for broker deployment</a><ul><li><a href=#container-securitycontext>Container SecurityContext</a></li></ul></li><li><a href=#configuring-jolokia-access>Configuring Jolokia Access</a></li><li><a href=#configuring-additional-volumes-to-the-broker>Configuring Additional Volumes to the Broker</a><ul><li><a href=#attaching-extra-volumes-shared-by-all-broker-pods>Attaching extra volumes shared by all broker pods</a></li><li><a href=#attaching-extra-persistent-volume-claims-to-each-broker>Attaching extra persistent volume claims to each broker</a></li></ul></li><li><a href=#using-cert-manager-and-trust-manager-configure-brokers>Using cert-manager and trust-manager configure brokers</a><ul><li><a href=#configuring-ssltls-for-management-console>Configuring SSL/TLS for management console</a></li><li><a href=#configuring-ssltls-for-acceptors-and-connectors>Configuring SSL/TLS for acceptors and connectors</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl"><h1>Operator</h1><p class=lead>Operator ArtemisCloud.io</p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#overview-of-the-artemiscloud-operator-custom-resource-definitions>Overview of the ArtemisCloud Operator Custom Resource Definitions</a><ul><li><a href=#additional-resources>Additional resources</a></li><li><a href=#operator-deployment-notes>Operator deployment notes</a></li></ul></li><li><a href=#installing-the-operator-using-the-cli>Installing the Operator using the CLI</a></li><li><a href=#configuring-logging-for-the-operator>Configuring logging for the Operator</a><ul><li><a href=#getting-the-operator-code>Getting the Operator code</a></li><li><a href=#preparing-the-kubernetes-environment>Preparing the kubernetes Environment</a></li><li><a href=#deploy-the-operator>Deploy The Operator</a></li></ul></li><li><a href=#creating-operator-based-broker-deployments>Creating Operator-based broker deployments</a><ul><li><a href=#deploying-a-basic-broker-instance>Deploying a basic broker instance</a></li><li><a href=#deploying-clustered-brokers>Deploying clustered brokers</a></li><li><a href=#applying-custom-resource-changes-to-running-broker-deployments>Applying Custom Resource changes to running broker deployments</a></li></ul></li><li><a href=#configuring-scheduling-preemption-and-eviction>Configuring Scheduling, Preemption and Eviction</a><ul><li><a href=#liveness-readiness-and-startup-probes>Liveness, Readiness and Startup Probes</a></li><li><a href=#tolerations>Tolerations</a></li><li><a href=#affinity>Affinity</a></li><li><a href=#node-selectors>Node Selectors</a></li><li><a href=#priority-class>Priority Class</a></li></ul></li><li><a href=#configuring-labels-and-annotations>Configuring Labels and Annotations</a><ul><li><a href=#labels>Labels</a></li><li><a href=#annotations>Annotations</a></li><li><a href=#custom-labels-and-annotations-on-supporting-resources-services-ingress-secrets-etc>Custom Labels and Annotations on supporting resources; Services, Ingress, Secrets etc.</a></li></ul></li><li><a href=#custom-modifications-via-a-strategic-merge-patch>Custom Modifications via a Strategic Merge Patch</a></li><li><a href=#setting--environment-variables>Setting Environment Variables</a></li><li><a href=#configuring-brokerproperties>Configuring brokerProperties</a></li><li><a href=#providing-additional-brokerproperties-configuration-from-a-secret>Providing additional brokerProperties configuration from a secret</a></li><li><a href=#configuring-logging-for-brokers>Configuring Logging for Brokers</a></li><li><a href=#configuring-jaas-for-brokers>Configuring JAAS for Brokers</a></li><li><a href=#locking-down-a-broker-deployment>Locking down a broker deployment</a></li><li><a href=#enable-brokers-metrics-plugin>Enable broker&rsquo;s metrics plugin</a><ul><li><a href=#enable-jvm-metrics>Enable JVM metrics</a></li><li><a href=#monitor-broker-metrics-by-using-prometheus>Monitor broker metrics by using Prometheus</a></li></ul></li><li><a href=#enabling-operator-metrics>Enabling Operator Metrics</a></li><li><a href=#configuring-poddisruptionbudget-for-broker-deployment>Configuring PodDisruptionBudget for broker deployment</a></li><li><a href=#configuring-topologyspreadconstraints-for-broker-deployment>Configuring TopologySpreadConstraints for broker deployment</a><ul><li><a href=#container-securitycontext>Container SecurityContext</a></li></ul></li><li><a href=#configuring-jolokia-access>Configuring Jolokia Access</a></li><li><a href=#configuring-additional-volumes-to-the-broker>Configuring Additional Volumes to the Broker</a><ul><li><a href=#attaching-extra-volumes-shared-by-all-broker-pods>Attaching extra volumes shared by all broker pods</a></li><li><a href=#attaching-extra-persistent-volume-claims-to-each-broker>Attaching extra persistent volume claims to each broker</a></li></ul></li><li><a href=#using-cert-manager-and-trust-manager-configure-brokers>Using cert-manager and trust-manager configure brokers</a><ul><li><a href=#configuring-ssltls-for-management-console>Configuring SSL/TLS for management console</a></li><li><a href=#configuring-ssltls-for-acceptors-and-connectors>Configuring SSL/TLS for acceptors and connectors</a></li></ul></li></ul></nav></div></nav><h2 id=overview-of-the-artemiscloud-operator-custom-resource-definitions>Overview of the ArtemisCloud Operator Custom Resource Definitions <a href=#overview-of-the-artemiscloud-operator-custom-resource-definitions class=anchor aria-hidden=true>#</a></h2><p>In general, a Custom Resource Definition (CRD) is a schema of configuration items that you can modify for a custom Kubernetes
 object deployed with an Operator. By creating a corresponding Custom Resource (CR) instance, you can specify values for
 configuration items in the CRD. If you are an Operator developer, what you expose through a CRD essentially becomes the
 API for how a deployed object is configured and used. You can directly access the CRD through regular HTTP curl commands,
@@ -262,11 +262,30 @@ spec:
                   operator: In
                   values:
                     - ssd
-  acceptors:
-    - name: &quot;artemis&quot;
-      port: 61617
-      protocols: core
-</code></pre><p>Affinity is outside the scope of this document, for full documentation see the <a href=https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/>Kubernetes Documentation</a></p><h3 id=labels-and-node-selectors>Labels and Node Selectors <a href=#labels-and-node-selectors class=anchor aria-hidden=true>#</a></h3><p>Labels can be added to the pods by defining them like so:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+</code></pre><p>Affinity is outside the scope of this document, for full documentation see the <a href=https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/>Kubernetes Documentation</a></p><h3 id=node-selectors>Node Selectors <a href=#node-selectors class=anchor aria-hidden=true>#</a></h3><p>It is possible to configure Node Selectors for the container pods, An example of this would be:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: broker
+  namespace: activemq-artemis-operator
+spec:
+  deploymentPlan:
+    nodeSelector:
+      location: &quot;production&quot;
+</code></pre><p>Node Selectors are outside the scope of this document, for full documentation see the <a href=https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/>Kubernetes Documentation</a></p><h3 id=priority-class>Priority Class <a href=#priority-class class=anchor aria-hidden=true>#</a></h3><p>It is possible to configure PriorityClassName for the container pods, An example of this would be:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: broker
+  namespace: activemq-artemis-operator
+spec:
+  resourceTemplates:
+    - selector:
+        kind: StatefulSet
+      patch:
+        spec:
+          template:
+            spec:
+              priorityClassName: high-priority
+</code></pre><p>Pod Priority is outside the scope of this document, for full documentation see the <a href=https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/>Kubernetes Documentation</a></p><h2 id=configuring-labels-and-annotations>Configuring Labels and Annotations <a href=#configuring-labels-and-annotations class=anchor aria-hidden=true>#</a></h2><h3 id=labels>Labels <a href=#labels class=anchor aria-hidden=true>#</a></h3><p>Labels can be added to the pods by defining them like so:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
   name: broker
@@ -276,24 +295,7 @@ spec:
     labels:
       location: &quot;production&quot;
       partition: &quot;customerA&quot;
-  acceptors:
-    - name: &quot;artemis&quot;
-      port: 61617
-      protocols: core
-</code></pre><p>It is also possible to configure a Node Selector for the container pods, this is configured like:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
-kind: ActiveMQArtemis
-metadata:
-  name: broker
-  namespace: activemq-artemis-operator
-spec:
-  deploymentPlan:
-    nodeSelector:
-      location: &quot;production&quot;
-  acceptors:
-    - name: &quot;artemis&quot;
-      port: 61617
-      protocols: core
-</code></pre><p>labels Node Selectors are outside the scope of this document, for full documentation see the <a href=https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/>Kubernetes Documentation</a></p><h3 id=annotations>Annotations <a href=#annotations class=anchor aria-hidden=true>#</a></h3><p>Annotations can be added to the pods by defining them like so:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+</code></pre><p>Labels are outside the scope of this document, for full documentation see the <a href=https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/>Kubernetes Documentation</a></p><h3 id=annotations>Annotations <a href=#annotations class=anchor aria-hidden=true>#</a></h3><p>Annotations can be added to the pods by defining them like so:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
   name: broker
@@ -318,7 +320,7 @@ spec:
        kind: &quot;Service&quot;
      annotations:
        someKey: &quot;somevalue&quot;
-</code></pre><h2 id=custom-mods-via-a-strategic-merge-patch>Custom mods via a strategic merge patch <a href=#custom-mods-via-a-strategic-merge-patch class=anchor aria-hidden=true>#</a></h2><p>Occasionally it is necessary to make customisations to the spec of a managed resource. The <code>resourceTemplate. patch</code> attribute can be used to apply such customisations. The <code>patch</code> is appled by the operator using a <a href=https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/#notes-on-the-strategic-merge-patch>strategic merge</a> before submitting to the api server.
+</code></pre><h2 id=custom-modifications-via-a-strategic-merge-patch>Custom Modifications via a Strategic Merge Patch <a href=#custom-modifications-via-a-strategic-merge-patch class=anchor aria-hidden=true>#</a></h2><p>Occasionally it is necessary to make customisations to the spec of a managed resource. The <code>resourceTemplate.patch</code> attribute can be used to apply such customisations. The <code>patch</code> is appled by the operator using a <a href=https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/#notes-on-the-strategic-merge-patch>strategic merge</a> before submitting to the api server.
 In the following example, a custom security context is added to the internal broker container of the managed StatefulSet by patching just the required attribute. Note: <code>name</code> is the mergeKey, it must match that of the managed container with the CR.Name prefix:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
@@ -326,17 +328,17 @@ metadata:
 spec:
   resourceTemplates:
   - selector:
-     kind: &quot;StatefulSet&quot;
+      kind: &quot;StatefulSet&quot;
     patch:
-     kind: &quot;StatefulSet&quot;
-     spec:
-      template:
-       spec:
-        containers:
-        - name: &quot;broker-container&quot;
-          securityContext:
-           runAsNonRoot: true
-</code></pre><h3 id=setting--environment-variables>Setting Environment Variables <a href=#setting--environment-variables class=anchor aria-hidden=true>#</a></h3><p>As an advanced option, you can set environment variables for containers using a CR.
+      kind: &quot;StatefulSet&quot;
+      spec:
+        template:
+          spec:
+            containers:
+            - name: &quot;broker-container&quot;
+              securityContext:
+                runAsNonRoot: true
+</code></pre><h2 id=setting--environment-variables>Setting Environment Variables <a href=#setting--environment-variables class=anchor aria-hidden=true>#</a></h2><p>As an advanced option, you can set environment variables for containers using a CR.
 For example, to have the JDK output what it sees as &rsquo;the system&rsquo;, provide a relevant JDK_JAVA_OPTIONS key in the env attribute.</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
@@ -358,9 +360,36 @@ spec:
   brokerProperties:
     - globalMaxSize=512m
 </code></pre><h2 id=providing-additional-brokerproperties-configuration-from-a-secret>Providing additional brokerProperties configuration from a secret <a href=#providing-additional-brokerproperties-configuration-from-a-secret class=anchor aria-hidden=true>#</a></h2><p>It is possible to replace the use of the activemqartemisaddresses CRD and much of the activemqartemissecurities CRD with configuration via broker properties. This can necessitate a large amount of configuration in the CR.brokerProperties field.
-In order to provide a way to split or orgainse these properties by file or by secret, an extra mount can be used to provide a secret that will be treated as an additional source of broker properties configuration.
-Using an <strong>extraMounts</strong> secret with a suffix &ldquo;-bp&rdquo; will cause the operator to auto mount the secret and make the broker aware of it&rsquo;s location. In addition the CR.Status.Condition[BrokerPropertiesApplied] will reflect the content of this secret.
-Broker properties are applied in order, starting with the CR.brokerProperties and then with the &ldquo;-bp&rdquo; auto mounts in turn. Keys (or property files) from secrets are applied in alphabetical order.</p><h2 id=configuring-logging-for-brokers>Configuring Logging for Brokers <a href=#configuring-logging-for-brokers class=anchor aria-hidden=true>#</a></h2><p>By default the operator deploys a broker with a default logging configuration that comes with the [Artemis container image]
+In order to provide a way to split or orgainse these properties by file or by secret, an extra mount can be used to provide a secret that will be treated as an additional source of broker properties configuration.</p><p>Using an <strong>extraMounts</strong> secret with a suffix &ldquo;-bp&rdquo; will cause the operator to auto mount the secret and make the broker aware of it&rsquo;s location. In addition the CR.Status.Condition[BrokerPropertiesApplied] will reflect the content of this secret.</p><p>Broker properties are applied in order, starting with the CR.brokerProperties and then with the &ldquo;-bp&rdquo; auto mounts in turn. Keys (or property files) from secrets are applied in alphabetical order.</p><p>To configure a specific broker instance in a &ldquo;-bp&rdquo; secret, use <code>broker-N</code> as the prefix for a key in the secret data. For example:</p><p>Create two -bp secrets:</p><pre><code class=language-yaml>apiVersion: v1
+kind: Secret
+metadata:
+  name: config-1-bp
+stringData:
+  journal1.properties: |
+    journalFileSize=12345
+  broker-0.globalMem.properties: |
+    globalMaxSize=512M
+</code></pre><pre><code class=language-yaml>apiVersion: v1
+kind: Secret
+metadata:
+  name: config-2-bp
+stringData:
+  journal2.properties: |
+    journalMinFiles=3
+  broker-1.globalMem.properties: |
+    globalMaxSize=12M
+</code></pre><p>and add the above secrets to extraMounts in the CR:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: ex-aao
+spec:
+  deploymentPlan:
+    size: 2
+    extraMounts:
+      secrets:
+      - &quot;config-1-bp&quot;
+      - &quot;config-2-bp&quot;
+</code></pre><p>When the CR is deployed the broker in pod 0 broker will get <code>globalMaxSize=512M</code> and pod 1 broker will get <code>globalMaxSize=12M</code>. While both will get properties from <code>journal1.properties</code> of secret <strong>config-1-bp</strong> and <code>journal2.properties</code> from secret <strong>config-2-bp</strong>.</p><h2 id=configuring-logging-for-brokers>Configuring Logging for Brokers <a href=#configuring-logging-for-brokers class=anchor aria-hidden=true>#</a></h2><p>By default the operator deploys a broker with a default logging configuration that comes with the [Artemis container image]
 (https://github.com/artemiscloud/activemq-artemis-broker-kubernetes-image). Broker logs its messages to console only.</p><p>Users can change the broker logging configuration by providing their own in a configmap or secret. The name of the configmap
 or secret must have the suffix <strong>-logging-config</strong>. There must a key <strong>logging.properties</strong> and the value must of the full content of the logging configuration. (The broker is using slf4j with
 log4j2 binding so the content should be log4j2&rsquo;s configuration in Java&rsquo;s properties file format).</p><p>Then you need to give the name of the configmap or secret in the broker custom resource via <strong>extraMounts</strong>. For example</p><p><code>for configmap</code></p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
@@ -519,7 +548,7 @@ spec:
   requireLogin: true
   deploymentPlan:
     size: 1
-</code></pre><p>And you use init container to configure security to have a username <strong>alice</strong> with password <strong>password1</strong> for jolikia access. To enable operator to use client to have access jolokia, create a secret named <strong>amq-jolokia-secret</strong> in the same namespace, like this:</p><pre><code class=language-yaml>apiVersion: v1
+</code></pre><p>And you use init container to configure security to have a username <strong>alice</strong> with password <strong>password1</strong> for jolokia access. To enable operator to use client to have access jolokia, create a secret named <strong>amq-jolokia-secret</strong> in the same namespace, like this:</p><pre><code class=language-yaml>apiVersion: v1
 metadata:
   name: amq-jolokia-secret
   namespace: default
@@ -552,7 +581,7 @@ spec:
     extraVolumeMounts:
       - name: mydata
         mountPath: /opt/mydata
-</code></pre><p>When deploying the above CR, the PVC volume will be mounted to path <strong>/opt/mydata</strong> in the broker container of both broker pods. The <strong>extraVolumeMounts</strong> is optional. If not specified a default mountPath is given based on the type of the volume, following the pattern:</p><p>/amq/extra/<volume-type>/&lt;volume.name></p><p>For example if you configure to attach a PersistentVolumeClaim type volume called <code>mydata</code>, the default mount path is <strong>/amq/extra/volumes/mydata</strong>.</p><h3 id=attaching-extra-persistent-volume-claims-to-each-broker>Attaching extra persistent volume claims to each broker <a href=#attaching-extra-persistent-volume-claims-to-each-broker class=anchor aria-hidden=true>#</a></h3><p>The operator also supports configuration for each of the brokers of a custom resource to have a separate persistent volume. To do this you need configure the CR using <strong>spec.extraVolumeClaimTemplates</strong> in your CR. For example:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+</code></pre><p>When deploying the above CR, the PVC volume will be mounted to path <strong>/opt/mydata</strong> in the broker container of both broker pods. The <strong>extraVolumeMounts</strong> is optional. If not specified a default mountPath is given based on the type of the volume, following the pattern:</p><p>/amq/extra/volumes/&lt;volume.name></p><p>For example if you configure to attach a PersistentVolumeClaim type volume called <code>mydata</code>, the default mount path is <strong>/amq/extra/volumes/mydata</strong>.</p><h3 id=attaching-extra-persistent-volume-claims-to-each-broker>Attaching extra persistent volume claims to each broker <a href=#attaching-extra-persistent-volume-claims-to-each-broker class=anchor aria-hidden=true>#</a></h3><p>The operator also supports configuration for each of the brokers of a custom resource to have a separate persistent volume. To do this you need configure the CR using <strong>spec.extraVolumeClaimTemplates</strong> in your CR. For example:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
   name: artemis-broker
@@ -572,7 +601,108 @@ spec:
       - name: mydata
         mountPath: /opt/mydata
 </code></pre><p>The <strong>extraVolumeClaimTemplates</strong> is a list of PVC specs. The key is the <strong>pvc name base</strong> of the PVC. The value is of type <a href=https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#persistentvolumeclaimspec-v1-core>persistentVolumeClaimSpec</a></p><p>When deploying the above CR, the operator will append the external PVC to the statefulset&rsquo;s PersistentVolumeClaimTemplate field. When the statesulset rolls out the pods it will mount matching PVCs to each pod.</p><p>Note for each pod the PVC&rsquo;s name must follow the pattern <code>&lt;volumeName>-&lt;statefulset-name>-&lt;ordinal></code>.
-For the above CR the matching PVC names are <strong>mydata-artemis-broker-ss-0</strong> for pod0 and <strong>mydata-artemis-broker-ss-1</strong> for pod1 respectively. You can configure an optional VolumeMount for each PVC under <strong>extraVolumeMounts</strong>. If not specified the default mount path is <strong>/opt/<volumename>/data</strong>.</p><p>For complete configruation options please take a look at the api definitions of <a href=../../api/v1beta1/activemqartemis_types.go>broker CRD</a>.</p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/help/images/><div class="card my-1"><div class="card-body py-2">&larr; Images</div></div></a><a class=ms-auto href=/docs/help/logging-guidelines/><div class="card my-1"><div class="card-body py-2">&rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-fluid><div class=row><div class=col><a href=https://www.redhat.com/><img height=32px src=/images/Logo-Red_Hat-Sponsored_By-A-Standard-RGB.png alt="Red Hat"></a></div><div class=col-10><p style=font-size:12px>Apache, Apache ActiveMQ Artemis,Artemis and associated open source project names are trademarks of the <a href=https://www.apache.org/>Apache Software Foundation</a>.</p></div></div></div></footer><script src=/js/bootstrap.min.0a0106334435d4110713bfaff4acaf02533b0c56d44412a74e9518db07672ddb7e099a9c7517bc9cb529e2ddd4ae2e438b40b720288900d5e74fb6d8928d9097.js integrity="sha512-CgEGM0Q11BEHE7+v9KyvAlM7DFbURBKnTpUY2wdnLdt+CZqcdRe8nLUp4t3Uri5Di0C3ICiJANXnT7bYko2Qlw==" crossorigin=anonymous defer></script>
+For the above CR the matching PVC names are <strong>mydata-artemis-broker-ss-0</strong> for pod0 and <strong>mydata-artemis-broker-ss-1</strong> for pod1 respectively. You can configure an optional VolumeMount for each PVC under <strong>extraVolumeMounts</strong>. If not specified the default mount path is <strong>/opt/<volumename>/data</strong>.</p><p>For complete configruation options please take a look at the api definitions of <a href=../../api/v1beta1/activemqartemis_types.go>broker CRD</a>.</p><h2 id=using-cert-manager-and-trust-manager-configure-brokers>Using cert-manager and trust-manager configure brokers <a href=#using-cert-manager-and-trust-manager-configure-brokers class=anchor aria-hidden=true>#</a></h2><p>Note: this feature currently is experimental. Feedback is welcomed.</p><p><a href=https://cert-manager.io/>cert-manager</a> adds certificates and certificate issuers as resource types in Kubernetes clusters, and simplifies the process of obtaining, renewing and using those certificates.</p><p>The operator provides options in the custom resource that utilizes cert-manager x509 certificates to configure SSL/TLS transports for brokers. It also works with <a href=https://github.com/cert-manager/trust-manager>trust-manager</a> to distribute trust CA bundles.</p><p>Before configuring a broker you need to have the certificates and bundles ready. In the following example a self-signed isser is used as a root CA.</p><p>Step 1 - create the root self-signed issuer</p><pre><code class=language-yaml>apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: root-issuer
+spec:
+  selfSigned: {}
+</code></pre><p>Step 2 - create the root Certificate</p><pre><code class=language-yaml>apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: root-ca
+  namespace: cert-manager
+spec:
+  isCA: true
+  commonName: &quot;artemiscloud.io.root&quot;
+  secretName: root-ca-secret
+  subject:
+    organizations:
+    - &quot;www.artemiscloud.io&quot;
+  issuerRef:
+    name: root-issuer
+    kind: ClusterIssuer
+</code></pre><p>Step 3 - create a ca issuer that is used to issue broker certificates signed by the root CA</p><pre><code class=language-yaml>apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: broker-cert-issuer
+spec:
+  ca:
+    secretName: root-ca-secret
+</code></pre><p>Step 4 - create a broker certificate signed by the root CA</p><pre><code class=language-yaml>apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: server-cert
+spec:
+  isCA: false
+  commonName: &quot;artemiscloud.io&quot;
+  dnsNames:
+    - &quot;artemis-broker-ss-0&quot;
+    - &quot;artemis-broker-ss-0.artemis-broker-hdls-svc.default.svc.cluster.local&quot;
+  secretName: server-cert-secret
+  subject:
+    organizations:
+    - &quot;www.artemiscloud.io&quot;
+  issuerRef:
+    name: broker-cert-issuer
+    kind: ClusterIssuer
+</code></pre><p>Step 5 - create the ca bundle from the root CA using trust-manager</p><pre><code class=language-yaml>apiVersion: trust.cert-manager.io/v1alpha1
+kind: Bundle
+metadata:
+  name: ca-bundle
+spec:
+  sources:
+  - useDefaultCAs: false
+  - secret:
+      name: &quot;root-ca-secret&quot;
+      key: &quot;tls.crt&quot;
+  target:
+    secret:
+      key: &quot;trust-bundle.pem&quot;
+</code></pre><h3 id=configuring-ssltls-for-management-console>Configuring SSL/TLS for management console <a href=#configuring-ssltls-for-management-console class=anchor aria-hidden=true>#</a></h3><p>Once you have the certificate and ca bundle ready you can configure the management console of the broker to used it:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: artemis-broker
+spec:
+  console:
+    expose: true
+    sslEnabled: true
+    sslSecret: server-cert-secret
+    trustSecret: ca-bundle
+  deploymentPlan:
+    size: 1
+</code></pre><p>The above broker cr configures a broker that has a SSL/TLS secured management console whose keystore and truststore are generated from certificate stored in secret <code>server-cert-secret</code>.</p><h3 id=configuring-ssltls-for-acceptors-and-connectors>Configuring SSL/TLS for acceptors and connectors <a href=#configuring-ssltls-for-acceptors-and-connectors class=anchor aria-hidden=true>#</a></h3><p>With the certificate ready you can configure an acceptor and/or connector of the broker to use it:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: artemis-broker
+spec:
+  acceptors:
+    - name: new-acceptor
+      protocols: all
+      port: 62666
+      sslEnabled: true
+      needClientAuth: true
+      expose: true
+      sslSecret: server-cert-secret
+      trustSecret: ca-bundle
+  deploymentPlan:
+    size: 1
+</code></pre><p>The above broker cr configures a broker that has a SSL/TLS secured acceptor called <code>new-acceptor</code> whose keystore and truststore are generated from secret <code>server-cert-secret</code> that is from the certificate resource.</p><p>You can configure a connector with ssl parameters from a certificate in like manner, for example the following yaml configures a connector called <code>new-connector</code> with the certificated above mentioned:</p><pre><code class=language-yaml>apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: artemis-broker
+spec:
+  connectors:
+    - name: new-connector
+      host: artemis-broker-ss-0
+      port: 62666
+      sslEnabled: true
+      expose: true
+      sslSecret: server-cert-secret
+      trustSecret: ca-bundle
+  deploymentPlan:
+    size: 1
+</code></pre><p>For details on how to use cert-manager to manage your certificates please refer to its <a href=https://cert-manager.io/docs/>documentation</a>.</p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/help/images/><div class="card my-1"><div class="card-body py-2">&larr; Images</div></div></a><a class=ms-auto href=/docs/help/logging-guidelines/><div class="card my-1"><div class="card-body py-2">&rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-fluid><div class=row><div class=col><a href=https://www.redhat.com/><img height=32px src=/images/Logo-Red_Hat-Sponsored_By-A-Standard-RGB.png alt="Red Hat"></a></div><div class=col-10><p style=font-size:12px>Apache, Apache ActiveMQ Artemis,Artemis and associated open source project names are trademarks of the <a href=https://www.apache.org/>Apache Software Foundation</a>.</p></div></div></div></footer><script src=/js/bootstrap.min.0a0106334435d4110713bfaff4acaf02533b0c56d44412a74e9518db07672ddb7e099a9c7517bc9cb529e2ddd4ae2e438b40b720288900d5e74fb6d8928d9097.js integrity="sha512-CgEGM0Q11BEHE7+v9KyvAlM7DFbURBKnTpUY2wdnLdt+CZqcdRe8nLUp4t3Uri5Di0C3ICiJANXnT7bYko2Qlw==" crossorigin=anonymous defer></script>
 <script src=/js/highlight.min.0d31f7af12feb83ee633b6351b023ee643ea3412376fbaa09c5a26d1a5ef999939f1ad379a5b12e1199a2c7d72ae1b23f633060a679628dcbfb0e72378cd20be.js integrity="sha512-DTH3rxL+uD7mM7Y1GwI+5kPqNBI3b7qgnFom0aXvmZk58a03mlsS4RmaLH1yrhsj9jMGCmeWKNy/sOcjeM0gvg==" crossorigin=anonymous defer></script>
 <script src=/main.min.6afc4bf655f45ae3e63629ec95be8bd2e0e792084b5635a6fe70b169fa9d1491638b3a4e900ed59c2e017ca18768e5c392e110d0e1336509f49f7dc418d16eef.js integrity="sha512-avxL9lX0WuPmNinslb6L0uDnkghLVjWm/nCxafqdFJFjizpOkA7VnC4BfKGHaOXDkuEQ0OEzZQn0n33EGNFu7w==" crossorigin=anonymous defer></script>
-<script src=/index.min.ce073a6bfcdde2aa09e6df3a4d44f39255cd08ce305d73e218e0577ad19e1c2f4c6bc14f8f95e3c55624c06521059a4467b61eca6458708dd25bf2411439694d.js integrity="sha512-zgc6a/zd4qoJ5t86TUTzklXNCM4wXXPiGOBXetGeHC9Ma8FPj5XjxVYkwGUhBZpEZ7YeymRYcI3SW/JBFDlpTQ==" crossorigin=anonymous defer></script></body></html>
+<script src=/index.min.25e885de0922c38e03c22f43618c276484696791761736987fde2312b5c7735c3031f27bb9bf391b4d1a2498ce94fabedcacb4585b79a5a44f542fe8a7fb9d09.js integrity="sha512-JeiF3gkiw44Dwi9DYYwnZIRpZ5F2FzaYf94jErXHc1wwMfJ7ub85G00aJJjOlPq+3Ky0WFt5paRPVC/op/udCQ==" crossorigin=anonymous defer></script></body></html>
