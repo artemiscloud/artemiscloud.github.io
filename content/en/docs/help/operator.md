@@ -515,7 +515,7 @@ spec:
   deploymentPlan:
     livenessProbe:
       tcpSocket:
-        port: 8181
+        port: 8161
       initialDelaySeconds: 30,
       timeoutSeconds:      5,
 ```
@@ -818,8 +818,34 @@ spec:
       value: -XshowSettings:system
 
 ```
+---
+**NOTE**
 
-Note: you are configuring an array of [envVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#envvar-v1-core) which is a very powerfull concept. Proceed with care, taking due respect to any environment the operator may set and depend on. For full documentation see the [Kubernetes Documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
+You are configuring an array of [envVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#envvar-v1-core) which is a very powerfull concept. Proceed with care, taking due respect to any environment the operator may set and depend on. For full documentation see the [Kubernetes Documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
+
+There are a few well-known environment variables that are used by the operator internally to configure brokers, as shown below
+
+* JAVA_ARGS_APPEND
+* JAVA_OPTS
+* DEBUG_ARGS
+
+If you want to add some values to any of them, make sure you define it in **spec.env** using `value` field. If you use `valueFrom` for the env var you will get validation error condition in your CR's status.
+
+If you really need `valueFrom` to define the values for the above env vars you can use a different var and then reference it in the internal var's `value` field.
+
+For example:
+
+```yaml
+  env:
+    - name: ENV_FROM_X
+      valueFrom:
+        secretKeyRef:
+          key: JAVA_ARGS_APPEND
+          name: amq-broker-dev-java-args-append
+    - name: JAVA_ARGS_APPEND
+      value: $(ENV_FROM_X)
+```
+Reference: [define-interdependent-environment-variables](https://kubernetes.io/docs/tasks/inject-data-application/define-interdependent-environment-variables/)
 
 ## Configuring brokerProperties
 
@@ -842,12 +868,59 @@ spec:
 ```
 
 ## Providing additional brokerProperties configuration from a secret
-It is possible to replace the use of the activemqartemisaddresses CRD and much of the activemqartemissecurities CRD with configuration via broker properties. This can necessitate a large amount of configuration in the CR.brokerProperties field.
 In order to provide a way to split or orgainse these properties by file or by secret, an extra mount can be used to provide a secret that will be treated as an additional source of broker properties configuration.
 
 Using an **extraMounts** secret with a suffix "-bp" will cause the operator to auto mount the secret and make the broker aware of it's location. In addition the CR.Status.Condition[BrokerPropertiesApplied] will reflect the content of this secret.
 
-Broker properties are applied in order, starting with the CR.brokerProperties and then with the "-bp" auto mounts in turn. Keys (or property files) from secrets are applied in alphabetical order.
+Broker properties are applied in order, starting with the CR.brokerProperties and then with the "-bp" auto mounts in turn. Keys (or property files) from secrets are applied in alphabetical order and the supported formats are text and JSON.
+
+To configure the global max size with text brokerProperties configuration from a "-bp" secret:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: config-bp
+stringData:
+  globalMem.properties: |
+    globalMaxSize=512M
+```
+
+```yaml
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: ex-aao
+spec:
+  deploymentPlan:
+    extraMounts:
+      secrets:
+      - "config-bp"
+```
+
+To configure the global max size with JSON brokerProperties configuration from a "-bp" secret:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: config-bp
+stringData:
+  globalMem.json: |
+    {"globalMaxSize":"512M"}
+```
+
+```yaml
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: ex-aao
+spec:
+  deploymentPlan:
+    extraMounts:
+      secrets:
+      - "config-bp"
+```
 
 To configure a specific broker instance in a "-bp" secret, use `broker-N` as the prefix for a key in the secret data. For example:
 
@@ -893,6 +966,9 @@ spec:
       - "config-2-bp"
 ```
 When the CR is deployed the broker in pod 0 broker will get `globalMaxSize=512M` and pod 1 broker will get `globalMaxSize=12M`. While both will get properties from `journal1.properties` of secret **config-1-bp** and `journal2.properties` from secret **config-2-bp**.
+
+## Replace ActiveMQArtemisAddress and ActiveMQArtemisSecurity CRDs with broker properties
+The ActiveMQArtemisAddress and ActiveMQArtemisSecurity CRDs are deprecated in favour of the configuration via broker properties. It is possible to replace the use of the activemqartemisaddresses CRD and much of the activemqartemissecurities CRD with configuration via broker properties.
 
 ## Configuring Logging for Brokers
 
@@ -993,14 +1069,12 @@ In addition, you need to expose the console, for example
 apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
-  name: ex-aao
+  name: artemis-with-metrics
 spec:
-  deploymentPlan:
-    size: 1
-    enableMetricsPlugin: true
-    image: placeholder
   console:
     expose: true
+  deploymentPlan:
+    enableMetricsPlugin: true
 ```
 
 ### Enable JVM metrics
@@ -1011,12 +1085,11 @@ JVM memory metrics are enabled by default. Use the `spec.brokerProperties` field
 apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
-  name: artemis-jvm
+  name: artemis-with-metrics
 spec:
   console:
     expose: true
   deploymentPlan:
-    size: 1
     enableMetricsPlugin: true
   brokerProperties:
     - "metricsConfiguration.jvmGc=true"
@@ -1026,22 +1099,22 @@ spec:
 
 ### Monitor broker metrics by using Prometheus
 
-The operator will expose a containerPort named **wsconj** for the Prometheus to monitor. The following
+The operator will expose a port named **console-jolokia** for the Prometheus to monitor. The following
 is a sample Prometheus ServiceMonitor resource
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: example-app
+  name: artemis-with-metrics-monitor
   labels:
     team: prometheus
 spec:
   selector:
     matchLabels:
-      application: ex-aao-app
+      application: artemis-with-metrics-app
   endpoints:
-  - port: wconsj
+  - port: console-jolokia
 ```
 For a complete example please refer to this [artemiscloud example](https://github.com/artemiscloud/artemiscloud-examples/tree/main/operator/prometheus).
 
