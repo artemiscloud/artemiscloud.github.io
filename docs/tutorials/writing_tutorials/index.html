@@ -1,0 +1,165 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><link rel=stylesheet href=/themify-icons/themify-icons.css><link rel=stylesheet href=/main.dc76e648fea25e6de1820840a02c99bc91eeb76a63f0ea3cf765c0c9ff3b4afb80fe22f2b0840aa1a82da2c4e9e868061a7b60aff39b77fc4b513a0180ef45d4.css integrity="sha512-3HbmSP6iXm3hgghAoCyZvJHut2pj8Oo892XAyf87SvuA/iLysIQKoagtosTp6GgGGntgr/Obd/xLUToBgO9F1A==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>Writing executable tutorials - ArtemisCloud.io</title><meta name=description content="How to write an executable tutorial"><link rel=canonical href=/docs/tutorials/writing_tutorials/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="Writing executable tutorials"><meta property="og:description" content="How to write an executable tutorial"><meta property="og:url" content="/docs/tutorials/writing_tutorials/"><meta property="og:site_name" content="ArtemisCloud.io"><meta property="og:image" content="/artemiscloud.png"><meta property="og:image:alt" content="ArtemisCloud.io"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@artemiscloudio"><meta name=twitter:creator content="@henkverlinde"><meta name=twitter:title content="Writing executable tutorials"><meta name=twitter:description content="How to write an executable tutorial"><meta name=twitter:image content="/artemiscloud.png"><meta name=twitter:image:alt content="Writing executable tutorials"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"/#/schema/organization/1","name":"ArtemisCloud.io","url":"/","sameAs":["https://twitter.com/artemiscloudio","https://github.com/artemiscloud"],"logo":{"@type":"ImageObject","@id":"/#/schema/image/1","url":"/artemiscloud.png","width":512,"height":512,"caption":"ArtemisCloud.io"},"image":{"@id":"/#/schema/image/1"}},{"@type":"WebSite","@id":"/#/schema/website/1","url":"/","name":"ArtemisCloud.io","description":"ArtemisCloud.io is a collection of container images that provide a way to deploy the Apache ActiveMQ Artemis Broker on Kubernetes.","publisher":{"@id":"/#/schema/organization/1"}},{"@type":"WebPage","@id":"/docs/tutorials/writing_tutorials/","url":"/docs/tutorials/writing_tutorials/","name":"Writing executable tutorials","description":"How to write an executable tutorial","isPartOf":{"@id":"/#/schema/website/1"},"about":{"@id":"/#/schema/organization/1"},"datePublished":"0001-01-01T00:00:00CET","dateModified":"0001-01-01T00:00:00CET","breadcrumb":{"@id":"/docs/tutorials/writing_tutorials/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"/docs/tutorials/writing_tutorials/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["/docs/tutorials/writing_tutorials/"]}]},{"@type":"BreadcrumbList","@id":"/docs/tutorials/writing_tutorials/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"/","url":"/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"/docstutorialswriting_tutorials/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"/#/schema/article/1","headline":"Writing executable tutorials","description":"How to write an executable tutorial","isPartOf":{"@id":"/docs/tutorials/writing_tutorials/"},"mainEntityOfPage":{"@id":"/docs/tutorials/writing_tutorials/"},"datePublished":"0001-01-01T00:00:00CET","dateModified":"0001-01-01T00:00:00CET","author":{"@id":"/#/schema/person/2"},"publisher":{"@id":"/#/schema/organization/1"},"image":{"@id":"/docs/tutorials/writing_tutorials/#/schema/image/2"}}]},{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"/#/schema/person/2","name":null,"sameAs":[]}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"/docs/tutorials/writing_tutorials/#/schema/image/2","url":"/artemiscloud.png","contentUrl":"/artemiscloud.png","caption":"Writing executable tutorials"}]}]}</script><meta name=theme-color content="#fff"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=/site.webmanifest></head><body class="docs single"><div class=header-bar></div><header class="navbar navbar-expand-md navbar-light doks-navbar"><nav class="container-fluid flex-wrap flex-md-nowrap" aria-label="Main navigation"><a class="navbar-brand p-0 me-auto" href=/ aria-label=ArtemisCloud.io>ArtemisCloud.io</a>
+<button class="btn btn-menu d-block d-md-none order-5" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-md-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-md-none"></div><div class="offcanvas-header d-md-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>ArtemisCloud.io</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body px-4"><h3 class="h6 text-uppercase mb-3 d-md-none">Main</h3><ul class="nav flex-column flex-md-row ms-md-n3"><li class=nav-item><a class="nav-link ps-0 py-1 active" href=/docs/getting-started/introduction/>Docs</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>Blog</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/community/>Community</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/docs/getting-started/introduction/>Get Started</a></li></ul><hr class="text-black-50 my-4 d-md-none"><h3 class="h6 text-uppercase mb-3 d-md-none">Socials</h3><ul class="nav flex-column flex-md-row ms-md-auto me-md-n5 pe-md-2"><li class=nav-item><a class="nav-link ps-0 py-1" href=https://github.com/artemiscloud><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg><small class="ms-2 d-md-none">GitHub</small></a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=https://twitter.com/artemiscloudio><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg><small class="ms-2 d-md-none">Twitter</small></a></li></ul></div></div><button id=mode class="btn btn-link order-md-1" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></nav></header><nav class="doks-subnavbar py-2 sticky-lg-top" aria-label="Secondary navigation"><div class="container-fluid d-flex align-items-md-center"><form class="doks-search position-relative flex-grow-1 me-auto"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><button class="btn doks-sidebar-toggle d-lg-none ms-3 order-3 collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle documentation navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></button></div></nav><div class=container-fluid><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-cb59b87e00d11222bfd9159d0d23836f aria-expanded=false>
+Getting started</button><div class=collapse id=section-cb59b87e00d11222bfd9159d0d23836f><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/getting-started/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=/docs/getting-started/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/help/hostname_resolution/>Resolve you cluster domain</a></li><li><a class="docs-link rounded" href=/docs/help/building/>Building</a></li><li><a class="docs-link rounded" href=/docs/help/bundle/>Bundle</a></li><li><a class="docs-link rounded" href=/docs/help/custom-resources/>Custom Resources</a></li><li><a class="docs-link rounded" href=/docs/help/images/>Images</a></li><li><a class="docs-link rounded" href=/docs/help/operator/>Operator</a></li><li><a class="docs-link rounded" href=/docs/help/logging-guidelines/></a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-130ddfce9c28453883ccfe2da8b6d5ac aria-expanded=true>
+Tutorials</button><div class="collapse show" id=section-130ddfce9c28453883ccfe2da8b6d5ac><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/tutorials/deploybasicimage/>Deploying the Basic Broker Image</a></li><li><a class="docs-link rounded" href=/docs/tutorials/external_mqtt_clients/>Connecting to the broker from external mqtt clients</a></li><li><a class="docs-link rounded" href=/docs/tutorials/send_receive_ingress/>Exchanging messages over an ssl ingress</a></li><li><a class="docs-link rounded" href=/docs/tutorials/send_receive_ingress_pem/>Exchanging messages over an ssl ingress with cert-manager's generated certs</a></li><li><a class="docs-link rounded" href=/docs/tutorials/send_receive_port_forwarding/>Exchanging messages using port forwarding</a></li><li><a class="docs-link rounded" href=/docs/tutorials/scaleup_and_scaledown/>Scaling Up and Down Brokers with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/ssl_broker_setup/>Setting up SSL connections with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/cert-manager-and-trust-manager/>Setting up SSL with cert-manager and trust-manager</a></li><li><a class="docs-link rounded" href=/docs/tutorials/using_operator/>Using the ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/initcontainer/>Using the custom init image</a></li><li><a class="docs-link rounded active" href=/docs/tutorials/writing_tutorials/>Writing executable tutorials</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-fluid" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-cb59b87e00d11222bfd9159d0d23836f aria-expanded=false>
+Getting started</button><div class=collapse id=section-cb59b87e00d11222bfd9159d0d23836f><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/getting-started/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=/docs/getting-started/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/help/hostname_resolution/>Resolve you cluster domain</a></li><li><a class="docs-link rounded" href=/docs/help/building/>Building</a></li><li><a class="docs-link rounded" href=/docs/help/bundle/>Bundle</a></li><li><a class="docs-link rounded" href=/docs/help/custom-resources/>Custom Resources</a></li><li><a class="docs-link rounded" href=/docs/help/images/>Images</a></li><li><a class="docs-link rounded" href=/docs/help/operator/>Operator</a></li><li><a class="docs-link rounded" href=/docs/help/logging-guidelines/></a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-130ddfce9c28453883ccfe2da8b6d5ac aria-expanded=true>
+Tutorials</button><div class="collapse show" id=section-130ddfce9c28453883ccfe2da8b6d5ac><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/docs/tutorials/deploybasicimage/>Deploying the Basic Broker Image</a></li><li><a class="docs-link rounded" href=/docs/tutorials/external_mqtt_clients/>Connecting to the broker from external mqtt clients</a></li><li><a class="docs-link rounded" href=/docs/tutorials/send_receive_ingress/>Exchanging messages over an ssl ingress</a></li><li><a class="docs-link rounded" href=/docs/tutorials/send_receive_ingress_pem/>Exchanging messages over an ssl ingress with cert-manager's generated certs</a></li><li><a class="docs-link rounded" href=/docs/tutorials/send_receive_port_forwarding/>Exchanging messages using port forwarding</a></li><li><a class="docs-link rounded" href=/docs/tutorials/scaleup_and_scaledown/>Scaling Up and Down Brokers with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/ssl_broker_setup/>Setting up SSL connections with ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/cert-manager-and-trust-manager/>Setting up SSL with cert-manager and trust-manager</a></li><li><a class="docs-link rounded" href=/docs/tutorials/using_operator/>Using the ArtemisCloud Operator</a></li><li><a class="docs-link rounded" href=/docs/tutorials/initcontainer/>Using the custom init image</a></li><li><a class="docs-link rounded active" href=/docs/tutorials/writing_tutorials/>Writing executable tutorials</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#the-terminology-stages-chunks-and-commands>The terminology: Stages, chunks and commands</a></li><li><a href=#execution-environment-of-the-chunks>Execution Environment of the chunks</a></li><li><a href=#examples>Examples</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl"><h1>Writing executable tutorials</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#the-terminology-stages-chunks-and-commands>The terminology: Stages, chunks and commands</a></li><li><a href=#execution-environment-of-the-chunks>Execution Environment of the chunks</a></li><li><a href=#examples>Examples</a></li></ul></li></ul></nav></div></nav><h3 id=the-terminology-stages-chunks-and-commands>The terminology: Stages, chunks and commands <a href=#the-terminology-stages-chunks-and-commands class=anchor aria-hidden=true>#</a></h3><p>Executable tutorials work a bit like a CI workflow. The command is the smallest
+element of them. It corresponds to an executable with its arguments to be called
+onto the system. A chunk is a collection of commands and is used to group them
+with an environment of execution, chunks can be executed in parallel of each
+other within the same stage. And finally, there are the stages, which are a
+collection of chunks. Stages gets executed one after the other.</p><h4 id=code-chunks>Code chunks <a href=#code-chunks class=anchor aria-hidden=true>#</a></h4><p>In an executable tutorial, every line gets executed. Chunks that are executed are
+chunks that provide a valid json object with at least a stage configured in it.</p><p>The code fence to create an executable chunk needs to have at least 3 back quotes
+and some json metadata on the same line.</p><pre><code>``` something {&quot;stage&quot;:&quot;init&quot;}
+```
+</code></pre><p>The only mandatory field an executable chunk must have is the stage name.</p><p>The other possible fields are:</p><h5 id=runtimebash><code>"runtime":"bash"</code> <a href=#runtimebash class=anchor aria-hidden=true>#</a></h5><p>Specify that the chunk is written in bash. The chunk will get turned into a
+script and executed.</p><p>The script itself is prefixed with <code>set -euo pipefail</code>, meaning that it will
+error at the first failing commands.</p><p>And is suffixed with <code>printenv</code> to extract all the environment variables the
+user added in.</p><h5 id=runtimewriter><code>"runtime":"writer"</code> <a href=#runtimewriter class=anchor aria-hidden=true>#</a></h5><p>Set that the chunk contains a file to write on disk. The metadata needs to
+contain <code>"destination":"some_place"</code> to write the file.</p><h5 id=labelsome-label><code>"label":"some label"</code> <a href=#labelsome-label class=anchor aria-hidden=true>#</a></h5><p>You can give a pretty name to a chunk. It&rsquo;s good for bash runtimes, as the
+command to execute is always <code>./script.sh</code> so if you want to have a
+differentiable name in the logs, use this field.</p><h5 id=rootdiroperator><code>"rootdir":"$operator"</code> <a href=#rootdiroperator class=anchor aria-hidden=true>#</a></h5><p>The commands in the chunk will the executed from the operator source code
+directory.</p><h5 id=rootdirtmpdirx><code>"rootdir":"$tmpdir.x"</code> <a href=#rootdirtmpdirx class=anchor aria-hidden=true>#</a></h5><p>Create a new temporary directory to execute the chunk. If another chunk reuses
+the same suffix (<code>.x</code> in the example) it&rsquo;ll share the same directory. Useful
+when you need to chain chunks or to reuse some cached files between chunks</p><h5 id=paralleltrue><code>"parallel":"true"</code> <a href=#paralleltrue class=anchor aria-hidden=true>#</a></h5><p>Makes the chunk executed in parallel of the others in its stage. This works best
+if there&rsquo;s only one command in the chunk (or if the chunk is a bash chunk). And
+if all the commands in the stage are made to run in parallel.</p><p>For now the parallel behavior has a simplistic implementation. Only the last
+command of the chunk is really started asynchronously. The other ones are
+sequentially executed before that.</p><h5 id=breakpointtrue><code>"breakpoint":"true"</code> <a href=#breakpointtrue class=anchor aria-hidden=true>#</a></h5><p>Enters interactive mode when the chunk is started. Useful for debugging
+purposes. Better to use alongside <code>--verbose</code></p><h5 id=requiresstagenameid><code>"requires":"stageName/id"</code> <a href=#requiresstagenameid class=anchor aria-hidden=true>#</a></h5><p>Makes the execution of the given stage dependant of the correct execution of the
+pointed stage. To be used in teardown chunks.</p><h5 id=idsomeid><code>"id":"someID"</code> <a href=#idsomeid class=anchor aria-hidden=true>#</a></h5><p>Give an ID to a chunk so that it can get referenced later on</p><h3 id=execution-environment-of-the-chunks>Execution Environment of the chunks <a href=#execution-environment-of-the-chunks class=anchor aria-hidden=true>#</a></h3><p>Every chunk is started with the environment of the parent process that started
+it. If as chunk whom runtime is bash is executed, all the variables it adds to
+its own env via <code>export</code> will get added to the environment of subsequent
+chunks.</p><h3 id=examples>Examples <a href=#examples class=anchor aria-hidden=true>#</a></h3><h4 id=creating-and-running-our-first-tutorial>Creating and running our first tutorial <a href=#creating-and-running-our-first-tutorial class=anchor aria-hidden=true>#</a></h4><p>Let&rsquo;s create a markdown file containing an executable chunk, and save it as
+<code>simple_tutorial.md</code></p><pre><code class=language-md># Demo 1
+
+This is a source markdown file it has a simple chunk that gets executed:
+
+## the chunk
+```bash {&quot;stage&quot;:&quot;inner_test1&quot;}
+echo this line will get printed in the output chunk below.
+```
+When this document is going to get executed, it'll have a new block above this
+line containing the actual output of the executed chunk.
+</code></pre><p>We will need to pass the folder containing this markdown file to the tutorial
+tester.</p><pre><code class=language-bash>export TUTORIALS_FOLDER=$(pwd)
+</code></pre><p>Now it&rsquo;s time to run the script.</p><pre><code class=language-bash>cd ${OPERATOR_ROOT}
+go run test/utils/tutorials/tester.go \
+   --update-tutorials \
+   --quiet \
+   --tutorials-root ${TUTORIALS_FOLDER}
+</code></pre><p>As we&rsquo;ve executed the tutorial tester tool with the <code>--update-tutorial</code> option.
+It&rsquo;ll make the tool insert the output of the chunk (if any) inside the
+source markdown file. Let&rsquo;s have a look at the updated markdown file:</p><pre><code class=language-bash>cat simple_tutorial.md
+</code></pre><pre><code class=language-shell># Demo 1
+
+This is a source markdown file it has a simple chunk that gets executed:
+
+## the chunk
+```bash {&quot;stage&quot;:&quot;inner_test1&quot;}
+echo this line will get printed in the output chunk below.
+```
+```shell tutorial_tester
+this line will get printed in the output chunk below.
+```
+When this document is going to get executed, it'll have a new block above this
+line containing the actual output of the executed chunk.
+</code></pre><h4 id=sharing-variables-between-chunks>Sharing variables between chunks <a href=#sharing-variables-between-chunks class=anchor aria-hidden=true>#</a></h4><p>Any export in a bash environment is available for subsequent chunks.</p><pre><code>```bash {&quot;stage&quot;:&quot;test2&quot;, &quot;runtime&quot;:&quot;bash&quot;}
+export SOME_VARIABLE=$(sleep .1s &amp;&amp; echo &quot;This is some content&quot;)
+export TEST=&quot;some value&quot;
+```
+</code></pre><p>The chunk below is able to perform some comparisons with value of
+<code>SOME_VARIABLE</code></p><pre><code>```bash {&quot;stage&quot;:&quot;test2&quot;, &quot;runtime&quot;:&quot;bash&quot;}
+if [ &quot;$SOME_VARIABLE&quot; == &quot;This is some content&quot; ]; then
+  echo &quot;same string&quot;
+fi
+```
+```shell tutorial_tester
+same string
+```
+</code></pre><h4 id=executing-in-parallel>Executing in parallel <a href=#executing-in-parallel class=anchor aria-hidden=true>#</a></h4><p>Parallelism can be important for some workflows, when for instance two processes
+need to chat with each other.</p><p>To demonstrate the capability, we&rsquo;re executing two pairs of chunks.
+The first pair runs in parallel, and does concurrent writing to a file on disk.
+The second pair acts as the control group and performs the writing sequentially,
+one after the other.</p><p>On a parallel environment we expect that the output of the two files should
+be different. Let&rsquo;s put that to the test!</p><h5 id=the-first-pair-is-writing-to-output-in-parallel>The first pair is writing to <code>output</code> in parallel <a href=#the-first-pair-is-writing-to-output-in-parallel class=anchor aria-hidden=true>#</a></h5><pre><code>```bash {&quot;stage&quot;:&quot;test3&quot;, &quot;runtime&quot;:&quot;bash&quot;, &quot;parallel&quot;:true, &quot;rootdir&quot;:&quot;$tmpdir.2&quot;}
+for i in $(seq 1 10);
+do
+    echo FIRST$i &gt;&gt; output
+    sleep .1
+done
+```
+</code></pre><pre><code>```bash {&quot;stage&quot;:&quot;test3&quot;, &quot;runtime&quot;:&quot;bash&quot;, &quot;parallel&quot;:true, &quot;rootdir&quot;:&quot;$tmpdir.2&quot;}
+for i in $(seq 1 10);
+do
+    sleep .1
+    echo SECOND$i &gt;&gt; output
+done
+```
+</code></pre><h5 id=the-second-pair-is-writing-to-output2-sequentially-this-time>The second pair is writing to <code>output2</code> sequentially this time <a href=#the-second-pair-is-writing-to-output2-sequentially-this-time class=anchor aria-hidden=true>#</a></h5><pre><code>```bash {&quot;stage&quot;:&quot;test4&quot;, &quot;runtime&quot;:&quot;bash&quot;, &quot;rootdir&quot;:&quot;$tmpdir.2&quot;}
+for i in $(seq 1 10);
+do
+    echo FIRST$i &gt;&gt; output2
+done
+```
+</code></pre><pre><code>```bash {&quot;stage&quot;:&quot;test4&quot;, &quot;runtime&quot;:&quot;bash&quot;, &quot;rootdir&quot;:&quot;$tmpdir.2&quot;}
+for i in $(seq 1 10);
+do
+    echo SECOND$i &gt;&gt; output2
+done
+```
+</code></pre><h5 id=then-lets-compare-the-two-files-and-asses-that-the-two-files-are-different>Then let&rsquo;s compare the two files and asses that the two files are different <a href=#then-lets-compare-the-two-files-and-asses-that-the-two-files-are-different class=anchor aria-hidden=true>#</a></h5><pre><code>```{&quot;stage&quot;:&quot;test4&quot;, &quot;rootdir&quot;:&quot;$tmpdir.2&quot;, &quot;runtime&quot;:&quot;bash&quot;}
+DIFF=$(diff output output2 || echo &quot;&quot;)
+if [[ -z ${DIFF} ]]; then
+    echo &quot;the files are the same, that's a problem.&quot;
+    exit 1
+else
+    echo &quot;the two files are different, we're running in parallel&quot;
+fi
+```
+```shell tutorial_tester
+the two files are different, we're running in parallel
+```
+</code></pre><h4 id=teardown--dependencies>Teardown & dependencies <a href=#teardown--dependencies class=anchor aria-hidden=true>#</a></h4><p>Teardown chunks are executed even if something went wrong in the middle of the
+execution.</p><p>Adding a dependency to the teardown chunk makes it execute only if its dependant
+chunk did execute correctly. That allows to make sure that a teardown stage only
+tears down things that have been built before.</p><pre><code class=language-md># Demo teardown
+
+## Two classical chunks
+
+```bash {&quot;stage&quot;:&quot;inner_test1&quot;, &quot;id&quot;:&quot;someID&quot;, &quot;label&quot;:&quot;working command&quot;}
+echo this executes correctly
+```
+
+```bash {&quot;stage&quot;:&quot;inner_test1&quot;, &quot;id&quot;:&quot;someID2&quot;, &quot;runtime&quot;:&quot;bash&quot;, &quot;label&quot;:&quot;failing command&quot;}
+echo this has failed
+exit 1
+```
+
+## Two teardown chunks
+
+This one has an output, because it's dependency did run correctly
+
+```bash {&quot;stage&quot;:&quot;teardown&quot;, &quot;requires&quot;:&quot;inner_test1/someID&quot;}
+echo executed because test4/someID got executed
+```
+
+This one won't
+
+```bash {&quot;stage&quot;:&quot;teardown&quot;, &quot;requires&quot;:&quot;inner_test1/someID2&quot;}
+echo not executed because someID2 is missing in test4
+```
+</code></pre><pre><code class=language-bash>export TUTORIALS_FOLDER=$(pwd)
+</code></pre><p>Let&rsquo;s run and see the result</p><pre><code class=language-bash>cd ${OPERATOR_ROOT}
+go run test/utils/tutorials/tester.go \
+   --no-styling \
+   --tutorials-root ${TUTORIALS_FOLDER} | grep &quot;SUCCESS.*someID&quot; || exit 0
+</code></pre><pre><code class=language-shell>                                                                                SUCCESS: echo executed because test4/someID got executed
+
+</code></pre><p>As we can see only the first teardown command did run.</p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/tutorials/initcontainer/><div class="card my-1"><div class="card-body py-2">&larr; Using the custom init image</div></div></a><a class=ms-auto href=/docs/help/building/><div class="card my-1"><div class="card-body py-2">Building &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-fluid><div class=row><div class=col><a href=https://www.redhat.com/><img height=32px src=/images/Logo-Red_Hat-Sponsored_By-A-Standard-RGB.png alt="Red Hat"></a></div><div class=col-10><p style=font-size:12px>Apache, Apache ActiveMQ Artemis,Artemis and associated open source project names are trademarks of the <a href=https://www.apache.org/>Apache Software Foundation</a>.</p></div></div></div></footer><script src=/js/bootstrap.min.0a0106334435d4110713bfaff4acaf02533b0c56d44412a74e9518db07672ddb7e099a9c7517bc9cb529e2ddd4ae2e438b40b720288900d5e74fb6d8928d9097.js integrity="sha512-CgEGM0Q11BEHE7+v9KyvAlM7DFbURBKnTpUY2wdnLdt+CZqcdRe8nLUp4t3Uri5Di0C3ICiJANXnT7bYko2Qlw==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.0d31f7af12feb83ee633b6351b023ee643ea3412376fbaa09c5a26d1a5ef999939f1ad379a5b12e1199a2c7d72ae1b23f633060a679628dcbfb0e72378cd20be.js integrity="sha512-DTH3rxL+uD7mM7Y1GwI+5kPqNBI3b7qgnFom0aXvmZk58a03mlsS4RmaLH1yrhsj9jMGCmeWKNy/sOcjeM0gvg==" crossorigin=anonymous defer></script>
+<script src=/main.min.6afc4bf655f45ae3e63629ec95be8bd2e0e792084b5635a6fe70b169fa9d1491638b3a4e900ed59c2e017ca18768e5c392e110d0e1336509f49f7dc418d16eef.js integrity="sha512-avxL9lX0WuPmNinslb6L0uDnkghLVjWm/nCxafqdFJFjizpOkA7VnC4BfKGHaOXDkuEQ0OEzZQn0n33EGNFu7w==" crossorigin=anonymous defer></script>
+<script src=/index.min.f0abb9c824fc2a9aec8d41feacec311fcba6f34b12a1bcac463e795be91289cfbf63f8308827f21801362d72edc06381acff61d88637760b27e2baab2dd88225.js integrity="sha512-8Ku5yCT8KprsjUH+rOwxH8um80sSobysRj55W+kSic+/Y/gwiCfyGAE2LXLtwGOBrP9h2IY3dgsn4rqrLdiCJQ==" crossorigin=anonymous defer></script></body></html>
