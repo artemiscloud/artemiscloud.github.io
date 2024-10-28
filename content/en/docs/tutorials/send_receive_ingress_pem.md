@@ -205,7 +205,7 @@ issuer.cert-manager.io/send-receive-root-issuer condition met
 #### Create the issuer certificate
 
 ```bash {"stage":"etc", "runtime":"bash", "label":"get the cluster ip"}
-export CLUSTER_IP=$(minikube ip)
+export CLUSTER_IP=$(minikube ip --profile tutorialtester)
 ```
 
 ```bash {"stage":"cert-manager", "HereTag":"EOF", "runtime":"bash", "label":"create issuer certificate"}
@@ -406,7 +406,7 @@ open a working connection:
   reached.
 
 ```bash {"stage":"test_setup", "rootdir":"$tmpdir.1", "runtime":"bash", "label":"download artemis"}
-wget --quiet https://dlcdn.apache.org/activemq/activemq-artemis/2.36.0/apache-artemis-2.36.0-bin.tar.gz
+wget --quiet https://archive.apache.org/dist/activemq/activemq-artemis/2.36.0/apache-artemis-2.36.0-bin.tar.gz
 tar -zxf apache-artemis-2.36.0-bin.tar.gz apache-artemis-2.36.0/
 ```
 

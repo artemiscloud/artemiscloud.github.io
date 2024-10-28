@@ -61,7 +61,7 @@ deployment.apps/ingress-nginx-controller patched
 #### Get minikube's ip
 
 ```{"stage":"init", "runtime":"bash", "label":"get the cluster ip"}
-export CLUSTER_IP=$(minikube ip)
+export CLUSTER_IP=$(minikube ip --profile tutorialtester)
 ```
 
 #### Make sure the domain of your cluster is resolvable
@@ -141,7 +141,7 @@ to configure the certificates.
 >   name `send-receive` and the acceptor name `sselacceptor`
 
 ```{"stage":"etc", "runtime":"bash", "label":"get the cluster ip"}
-export CLUSTER_IP=$(minikube ip)
+export CLUSTER_IP=$(minikube ip --profile tutorialtester)
 ```
 
 ```{"stage":"cert-creation", "rootdir":"$tmpdir.1", "runtime":"bash", "label":"generate cert"}
@@ -244,7 +244,7 @@ release](https://activemq.apache.org/components/artemis/download/) of ActiveMQ
 Artemis, decompress the tarball and locate the artemis executable.
 
 ```{"stage":"test_setup", "rootdir":"$tmpdir.1", "runtime":"bash", "label":"download artemis"}
-wget --quiet https://dlcdn.apache.org/activemq/activemq-artemis/2.36.0/apache-artemis-2.36.0-bin.tar.gz
+wget --quiet https://archive.apache.org/dist/activemq/activemq-artemis/2.36.0/apache-artemis-2.36.0-bin.tar.gz
 tar -zxf apache-artemis-2.36.0-bin.tar.gz apache-artemis-2.36.0/
 ```
 
