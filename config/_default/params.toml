@@ -55,9 +55,9 @@ footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">N
 copyRight = "Copyright (c) 2020-2021 Henk Verlinde"
 
 # Alert
-alert = false
-alertDismissable = true
-alertText = "Introducing the ArtemisCloud.io! <a class=\"alert-link stretched-link\" href=\"https://artemiscloud.io/\">Check out ArtemisCloud.io</a>"
+alert = true
+alertDismissable = false
+alertText = "This website has been archived as all activities are now happening at <a class=\"alert-link stretched-link\" href=\"https://arkmq.org/\">arkmq.org</a>"
 
 # Edit Page
 # repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
